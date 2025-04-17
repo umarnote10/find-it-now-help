@@ -35,7 +35,8 @@ const MOCK_ITEMS: ItemType[] = [
     reward_note: "$50 reward for safe return",
     images: ["https://placehold.co/800x600/e2e8f0/94a3b8?text=Wallet"],
     created_at: new Date(Date.now() - 86400000 * 2).toISOString(), // 2 days ago
-    user_id: "user1"
+    user_id: "user1",
+    language: "en"
   },
   {
     id: "2",
@@ -50,7 +51,8 @@ const MOCK_ITEMS: ItemType[] = [
     reward_note: "$100 reward, no questions asked",
     images: ["https://placehold.co/800x600/e2e8f0/94a3b8?text=iPhone"],
     created_at: new Date(Date.now() - 86400000 * 1).toISOString(), // 1 day ago
-    user_id: "user2"
+    user_id: "user2",
+    language: "en"
   },
   {
     id: "5",
@@ -63,7 +65,8 @@ const MOCK_ITEMS: ItemType[] = [
     longitude: -73.985130,
     images: ["https://placehold.co/800x600/e2e8f0/94a3b8?text=iPhone"],
     created_at: new Date(Date.now() - 86400000 * 1).toISOString(), // 1 day ago
-    user_id: "user5"
+    user_id: "user5",
+    language: "en"
   },
   {
     id: "6",
@@ -77,7 +80,8 @@ const MOCK_ITEMS: ItemType[] = [
     whatsapp_number: "+1122334455",
     images: ["https://placehold.co/800x600/e2e8f0/94a3b8?text=Dog"],
     created_at: new Date(Date.now() - 86400000 * 0.2).toISOString(), // ~5 hours ago
-    user_id: "user6"
+    user_id: "user6",
+    language: "en"
   }
 ];
 

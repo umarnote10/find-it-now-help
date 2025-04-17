@@ -63,7 +63,8 @@ export const MOCK_ITEMS_PAKISTAN: ItemType[] = [
     user_name: "Ahmed Hassan",
     user_profile_image: "https://i.pravatar.cc/150?img=12",
     latitude: 33.7067,
-    longitude: 73.0497
+    longitude: 73.0497,
+    language: "en"
   },
   {
     id: "2",
@@ -80,7 +81,8 @@ export const MOCK_ITEMS_PAKISTAN: ItemType[] = [
     created_at: new Date(Date.now() - 86400000 * 0.5).toISOString(), // 12 hours ago
     user_id: "user2",
     user_name: "Fatima Khan",
-    user_profile_image: "https://i.pravatar.cc/150?img=5"
+    user_profile_image: "https://i.pravatar.cc/150?img=5",
+    language: "en"
   },
   {
     id: "3",
@@ -96,7 +98,8 @@ export const MOCK_ITEMS_PAKISTAN: ItemType[] = [
     created_at: new Date(Date.now() - 86400000 * 0.7).toISOString(), // ~17 hours ago
     user_id: "user3",
     user_name: "Zafar Iqbal",
-    user_profile_image: "https://i.pravatar.cc/150?img=32"
+    user_profile_image: "https://i.pravatar.cc/150?img=32",
+    language: "en"
   },
   {
     id: "4",
@@ -112,7 +115,8 @@ export const MOCK_ITEMS_PAKISTAN: ItemType[] = [
     user_name: "Ayesha Malik",
     user_profile_image: "https://i.pravatar.cc/150?img=23",
     latitude: 34.0137,
-    longitude: 71.5467
+    longitude: 71.5467,
+    language: "en"
   },
   {
     id: "5",
@@ -127,7 +131,8 @@ export const MOCK_ITEMS_PAKISTAN: ItemType[] = [
     created_at: new Date(Date.now() - 86400000 * 0.2).toISOString(), // ~5 hours ago
     user_id: "user5",
     user_name: "Muhammad Ali",
-    user_profile_image: "https://i.pravatar.cc/150?img=11"
+    user_profile_image: "https://i.pravatar.cc/150?img=11",
+    language: "en"
   },
   {
     id: "6",
@@ -143,7 +148,8 @@ export const MOCK_ITEMS_PAKISTAN: ItemType[] = [
     user_name: "Sana Nawaz",
     user_profile_image: "https://i.pravatar.cc/150?img=25",
     latitude: 33.642250,
-    longitude: 73.075730
+    longitude: 73.075730,
+    language: "en"
   },
   {
     id: "7",
@@ -160,7 +166,8 @@ export const MOCK_ITEMS_PAKISTAN: ItemType[] = [
     user_name: "Imran Shah",
     user_profile_image: "https://i.pravatar.cc/150?img=13",
     latitude: 33.5362,
-    longitude: 73.0845
+    longitude: 73.0845,
+    language: "en"
   },
   {
     id: "8",
@@ -177,7 +184,8 @@ export const MOCK_ITEMS_PAKISTAN: ItemType[] = [
     user_name: "Zara Ahmed",
     user_profile_image: "https://i.pravatar.cc/150?img=20",
     latitude: 24.9200,
-    longitude: 67.1322
+    longitude: 67.1322,
+    language: "en"
   },
   {
     id: "9",
@@ -193,7 +201,8 @@ export const MOCK_ITEMS_PAKISTAN: ItemType[] = [
     user_name: "Omar Farooq",
     user_profile_image: "https://i.pravatar.cc/150?img=15",
     latitude: 31.5925,
-    longitude: 74.3095
+    longitude: 74.3095,
+    language: "en"
   },
   {
     id: "10",
@@ -209,7 +218,8 @@ export const MOCK_ITEMS_PAKISTAN: ItemType[] = [
     user_name: "Hina Javed",
     user_profile_image: "https://i.pravatar.cc/150?img=29",
     latitude: 33.5651,
-    longitude: 73.0780
+    longitude: 73.0780,
+    language: "en"
   },
   {
     id: "11",
@@ -226,7 +236,8 @@ export const MOCK_ITEMS_PAKISTAN: ItemType[] = [
     user_name: "Asad Mahmood",
     user_profile_image: "https://i.pravatar.cc/150?img=17",
     latitude: 31.5125,
-    longitude: 74.3343
+    longitude: 74.3343,
+    language: "en"
   },
   {
     id: "12",
@@ -242,6 +253,7 @@ export const MOCK_ITEMS_PAKISTAN: ItemType[] = [
     user_name: "Nadia Hussain",
     user_profile_image: "https://i.pravatar.cc/150?img=24",
     latitude: 33.6992,
-    longitude: 73.0198
+    longitude: 73.0198,
+    language: "en"
   }
 ];
