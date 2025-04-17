@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
@@ -23,6 +22,7 @@ import { ItemType } from "@/types";
 import { formatDistanceToNow, format } from "date-fns";
 import { Badge } from "@/components/ui/badge";
 import { MOCK_ITEMS_PAKISTAN } from "@/data/mockItems";
+import { Home } from "lucide-react";
 
 const ItemDetailPage = () => {
   const { id } = useParams<{ id: string }>();

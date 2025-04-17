@@ -1,4 +1,3 @@
-
 export type UserType = {
   id: string;
   email?: string;
@@ -9,6 +8,7 @@ export type UserType = {
 }
 
 export type ItemStatus = 'lost' | 'found';
+export type ItemLanguage = 'en' | 'ur';
 
 export type ItemType = {
   id: string;
@@ -24,11 +24,11 @@ export type ItemType = {
   user_id: string;
   user_name?: string;
   user_profile_image?: string;
-  latitude?: number;
-  longitude?: number;
+  language: ItemLanguage;
 }
 
 export type CityOption = {
   value: string;
   label: string;
+  urdu_label?: string;
 }

@@ -2,24 +2,14 @@
 import { CityOption } from "@/types";
 
 export const pakistaniCities: CityOption[] = [
-  { value: "karachi", label: "Karachi" },
-  { value: "lahore", label: "Lahore" },
-  { value: "islamabad", label: "Islamabad" },
-  { value: "rawalpindi", label: "Rawalpindi" },
-  { value: "peshawar", label: "Peshawar" },
-  { value: "faisalabad", label: "Faisalabad" },
-  { value: "multan", label: "Multan" },
-  { value: "gujranwala", label: "Gujranwala" },
-  { value: "quetta", label: "Quetta" },
-  { value: "sialkot", label: "Sialkot" },
-  { value: "hyderabad", label: "Hyderabad" },
-  { value: "bahawalpur", label: "Bahawalpur" },
-  { value: "sargodha", label: "Sargodha" },
-  { value: "abbottabad", label: "Abbottabad" },
-  { value: "gwadar", label: "Gwadar" },
-  { value: "sukkur", label: "Sukkur" },
-  { value: "larkana", label: "Larkana" },
-  { value: "sheikhupura", label: "Sheikhupura" },
-  { value: "mirpur", label: "Mirpur" },
-  { value: "jhang", label: "Jhang" }
+  { value: "karachi", label: "Karachi", urdu_label: "کراچی" },
+  { value: "lahore", label: "Lahore", urdu_label: "لاہور" },
+  { value: "islamabad", label: "Islamabad", urdu_label: "اسلام آباد" },
+  { value: "rawalpindi", label: "Rawalpindi", urdu_label: "راولپنڈی" },
+  { value: "peshawar", label: "Peshawar", urdu_label: "پشاور" },
+  { value: "faisalabad", label: "Faisalabad", urdu_label: "فیصل آباد" },
+  { value: "multan", label: "Multan", urdu_label: "ملتان" },
+  { value: "gujranwala", label: "Gujranwala", urdu_label: "گوجرانوالہ" },
+  { value: "quetta", label: "Quetta", urdu_label: "کوئٹہ" },
+  { value: "sialkot", label: "Sialkot", urdu_label: "سیالکوٹ" }
 ];

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,40 +8,19 @@ import { CityOption } from "@/types";
 interface CitySelectorProps {
   onCitySelect: (city: string) => void;
   initialCity?: string;
+  cities: CityOption[];
 }
 
-// Sample data for development
-const MOCK_CITIES: CityOption[] = [
-  { value: "new-york", label: "New York" },
-  { value: "los-angeles", label: "Los Angeles" },
-  { value: "chicago", label: "Chicago" },
-  { value: "houston", label: "Houston" },
-  { value: "phoenix", label: "Phoenix" },
-  { value: "philadelphia", label: "Philadelphia" },
-  { value: "san-antonio", label: "San Antonio" },
-  { value: "san-diego", label: "San Diego" },
-  { value: "dallas", label: "Dallas" },
-  { value: "austin", label: "Austin" },
-  { value: "san-jose", label: "San Jose" },
-  { value: "boston", label: "Boston" },
-  { value: "seattle", label: "Seattle" },
-  { value: "denver", label: "Denver" },
-  { value: "miami", label: "Miami" },
-  { value: "atlanta", label: "Atlanta" },
-  { value: "portland", label: "Portland" },
-  { value: "washington-dc", label: "Washington D.C." },
-];
-
-const CitySelector = ({ onCitySelect, initialCity = "" }: CitySelectorProps) => {
+const CitySelector = ({ onCitySelect, initialCity = "", cities }: CitySelectorProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCity, setSelectedCity] = useState(initialCity);
   const [showDropdown, setShowDropdown] = useState(false);
 
   const filteredCities = searchQuery
-    ? MOCK_CITIES.filter((city) =>
+    ? cities.filter((city) =>
         city.label.toLowerCase().includes(searchQuery.toLowerCase())
       )
-    : MOCK_CITIES;
+    : cities;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;

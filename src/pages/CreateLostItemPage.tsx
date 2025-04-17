@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +11,8 @@ import {
   MapPinned,
   MessageSquare,
   Gift,
-  CalendarClock
+  CalendarClock,
+  ShieldCheck
 } from "lucide-react";
 import { 
   Card, 
@@ -509,7 +509,6 @@ const CreateLostItemPage = () => {
 
 export default CreateLostItemPage;
 
-// Missing component import at the top
 function CheckCircle(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
