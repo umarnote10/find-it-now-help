@@ -4,96 +4,29 @@ import { Helmet } from "react-helmet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ItemGrid from "@/components/items/ItemGrid";
 import ItemFilters from "@/components/items/ItemFilters";
-import { ItemType, CityOption } from "@/types";
-import { MapPin } from "lucide-react";
-
-// Sample data for development
-const MOCK_CITIES: CityOption[] = [
-  { value: "new-york", label: "New York" },
-  { value: "los-angeles", label: "Los Angeles" },
-  { value: "chicago", label: "Chicago" },
-  { value: "houston", label: "Houston" },
-  { value: "phoenix", label: "Phoenix" },
-  { value: "philadelphia", label: "Philadelphia" },
-  { value: "san-antonio", label: "San Antonio" },
-  { value: "san-diego", label: "San Diego" }
-];
-
-// Sample data for development
-const MOCK_ITEMS: ItemType[] = [
-  {
-    id: "1",
-    title: "Lost Black Wallet with ID Cards",
-    description: "I lost my black leather wallet at Central Park near the fountain. It has my driver's license and credit cards inside.",
-    status: "lost",
-    location: "Central Park, near the fountain",
-    city: "New York",
-    latitude: 40.785091,
-    longitude: -73.968285,
-    whatsapp_number: "+1234567890",
-    reward_note: "$50 reward for safe return",
-    images: ["https://placehold.co/800x600/e2e8f0/94a3b8?text=Wallet"],
-    created_at: new Date(Date.now() - 86400000 * 2).toISOString(), // 2 days ago
-    user_id: "user1"
-  },
-  {
-    id: "2",
-    title: "Lost iPhone 15 Pro",
-    description: "Lost my iPhone 15 Pro (black) at Starbucks on Main Street. It has a clear case with stickers.",
-    status: "lost",
-    location: "Starbucks, 123 Main St",
-    city: "Los Angeles",
-    latitude: 34.052235,
-    longitude: -118.243683,
-    whatsapp_number: "+1987654321",
-    reward_note: "$100 reward, no questions asked",
-    images: ["https://placehold.co/800x600/e2e8f0/94a3b8?text=iPhone"],
-    created_at: new Date(Date.now() - 86400000 * 1).toISOString(), // 1 day ago
-    user_id: "user2"
-  },
-  {
-    id: "3",
-    title: "Lost Car Keys with Rabbit Foot Keychain",
-    description: "Lost my car keys with a distinctive rabbit foot keychain at the shopping mall food court.",
-    status: "lost",
-    location: "Westfield Mall, Food Court",
-    city: "Chicago",
-    latitude: 41.878113,
-    longitude: -87.629799,
-    whatsapp_number: "+1234509876",
-    images: ["https://placehold.co/800x600/e2e8f0/94a3b8?text=Keys"],
-    created_at: new Date(Date.now() - 86400000 * 0.5).toISOString(), // 12 hours ago
-    user_id: "user3"
-  },
-  {
-    id: "4",
-    title: "Lost Prescription Glasses",
-    description: "I lost my prescription glasses with tortoise shell frames. They were in a black case.",
-    status: "lost",
-    location: "Public Library, 2nd floor",
-    city: "Houston",
-    latitude: 29.760427,
-    longitude: -95.369804,
-    whatsapp_number: "+1456789012",
-    images: ["https://placehold.co/800x600/e2e8f0/94a3b8?text=Glasses"],
-    created_at: new Date(Date.now() - 86400000 * 5).toISOString(), // 5 days ago
-    user_id: "user4"
-  }
-];
+import { ItemType } from "@/types";
+import { MapPin, Filter, Map } from "lucide-react";
+import { pakistaniCities } from "@/data/pakistanCities";
+import { MOCK_ITEMS_PAKISTAN } from "@/data/mockItems";
+import { Button } from "@/components/ui/button";
 
 const LostItemsPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [items, setItems] = useState<ItemType[]>([]);
   const [activeView, setActiveView] = useState<"list" | "map">("list");
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   useEffect(() => {
     // Simulate API call
     const fetchItems = async () => {
       setIsLoading(true);
       try {
+        // Filter only lost items
+        const lostItems = MOCK_ITEMS_PAKISTAN.filter(item => item.status === "lost");
+        
         // In a real app, this would be a fetch call to Supabase
         setTimeout(() => {
-          setItems(MOCK_ITEMS);
+          setItems(lostItems);
           setIsLoading(false);
         }, 1000);
       } catch (error) {
@@ -108,10 +41,27 @@ const LostItemsPage = () => {
   const handleFilterChange = (filters: any) => {
     console.log("Filters applied:", filters);
     // In a real app, we would filter the items based on these filters
-    // For now, we'll just simulate a loading state
     setIsLoading(true);
     setTimeout(() => {
-      // Filter logic would go here
+      // Simple filter implementation for city
+      let filteredItems = MOCK_ITEMS_PAKISTAN.filter(item => item.status === "lost");
+      
+      if (filters.city) {
+        filteredItems = filteredItems.filter(item => 
+          item.city.toLowerCase() === filters.city.toLowerCase()
+        );
+      }
+      
+      if (filters.search) {
+        const searchLower = filters.search.toLowerCase();
+        filteredItems = filteredItems.filter(item => 
+          item.title.toLowerCase().includes(searchLower) || 
+          item.description.toLowerCase().includes(searchLower) ||
+          item.location.toLowerCase().includes(searchLower)
+        );
+      }
+      
+      setItems(filteredItems);
       setIsLoading(false);
     }, 500);
   };
@@ -130,22 +80,43 @@ const LostItemsPage = () => {
     <div className="foundit-container py-8">
       <Helmet>
         <title>Lost Items | Found It</title>
-        <meta name="description" content="Browse and search for lost items reported on Found It." />
+        <meta name="description" content="Browse and search for lost items reported on Found It across Pakistan." />
       </Helmet>
 
-      <div className="flex items-center mb-6">
-        <MapPin className="h-6 w-6 mr-2 text-foundit-purple" />
-        <h1 className="text-3xl font-bold">Lost Items</h1>
+      <div className="flex flex-wrap items-center justify-between mb-8 gap-4">
+        <div className="flex items-center">
+          <div className="bg-red-100 p-2 rounded-lg mr-3">
+            <MapPin className="h-6 w-6 text-red-600" />
+          </div>
+          <h1 className="text-3xl font-bold">Lost Items</h1>
+        </div>
+        
+        <div className="flex items-center space-x-3">
+          <Button 
+            variant="outline"
+            className="border-foundit-muted text-foundit-muted hover:bg-foundit-muted hover:text-white"
+            onClick={() => setIsFilterOpen(!isFilterOpen)}
+          >
+            <Filter className="mr-2 h-4 w-4" />
+            Filters
+          </Button>
+          
+          <Tabs value={activeView} onValueChange={(v) => setActiveView(v as "list" | "map")}>
+            <TabsList className="grid w-[180px] grid-cols-2">
+              <TabsTrigger value="list">List View</TabsTrigger>
+              <TabsTrigger value="map">Map View</TabsTrigger>
+            </TabsList>
+          </Tabs>
+        </div>
       </div>
 
-      <ItemFilters onFilterChange={handleFilterChange} cities={MOCK_CITIES} />
+      <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isFilterOpen ? 'max-h-96' : 'max-h-0'}`}>
+        <div className="bg-white p-5 rounded-lg shadow-md mb-6">
+          <ItemFilters onFilterChange={handleFilterChange} cities={pakistaniCities} />
+        </div>
+      </div>
 
-      <Tabs defaultValue="list" value={activeView} onValueChange={(v) => setActiveView(v as "list" | "map")}>
-        <TabsList className="mb-6">
-          <TabsTrigger value="list">List View</TabsTrigger>
-          <TabsTrigger value="map">Map View</TabsTrigger>
-        </TabsList>
-
+      <Tabs value={activeView} onValueChange={(v) => setActiveView(v as "list" | "map")}>
         <TabsContent value="list">
           <ItemGrid 
             items={items} 
@@ -156,10 +127,14 @@ const LostItemsPage = () => {
         </TabsContent>
 
         <TabsContent value="map">
-          <div className="bg-gray-100 rounded-lg h-[60vh] flex items-center justify-center">
-            <p className="text-gray-500">
-              Map view will be implemented with Google Maps SDK.
-            </p>
+          <div className="bg-gray-50 border border-gray-200 rounded-lg h-[70vh] flex items-center justify-center text-center p-6">
+            <div>
+              <Map className="h-16 w-16 text-gray-300 mx-auto mb-4" />
+              <h3 className="text-xl font-medium mb-2">Map View</h3>
+              <p className="text-gray-500 max-w-md mx-auto">
+                Interactive map view will be implemented with Google Maps SDK integration to show lost items across Pakistan.
+              </p>
+            </div>
           </div>
         </TabsContent>
       </Tabs>

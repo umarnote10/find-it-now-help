@@ -4,6 +4,8 @@ export type UserType = {
   email?: string;
   phone?: string;
   created_at: string;
+  name?: string;
+  profile_image?: string;
 }
 
 export type ItemStatus = 'lost' | 'found';
@@ -20,6 +22,8 @@ export type ItemType = {
   images: string[];
   created_at: string;
   user_id: string;
+  user_name?: string;
+  user_profile_image?: string;
   latitude?: number;
   longitude?: number;
 }

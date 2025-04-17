@@ -4,89 +4,29 @@ import { Helmet } from "react-helmet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ItemGrid from "@/components/items/ItemGrid";
 import ItemFilters from "@/components/items/ItemFilters";
-import { ItemType, CityOption } from "@/types";
-import { Hand } from "lucide-react";
-
-// Sample data for development
-const MOCK_CITIES: CityOption[] = [
-  { value: "new-york", label: "New York" },
-  { value: "los-angeles", label: "Los Angeles" },
-  { value: "chicago", label: "Chicago" },
-  { value: "houston", label: "Houston" },
-  { value: "phoenix", label: "Phoenix" },
-  { value: "philadelphia", label: "Philadelphia" },
-  { value: "san-antonio", label: "San Antonio" },
-  { value: "san-diego", label: "San Diego" }
-];
-
-// Sample data for development
-const MOCK_ITEMS: ItemType[] = [
-  {
-    id: "5",
-    title: "Found iPhone in Blue Case",
-    description: "Found an iPhone with a blue case at Starbucks on 5th Avenue. It was left on a table near the window.",
-    status: "found",
-    location: "Starbucks, 5th Avenue",
-    city: "New York",
-    latitude: 40.758896,
-    longitude: -73.985130,
-    images: ["https://placehold.co/800x600/e2e8f0/94a3b8?text=iPhone"],
-    created_at: new Date(Date.now() - 86400000 * 1).toISOString(), // 1 day ago
-    user_id: "user5"
-  },
-  {
-    id: "6",
-    title: "Found Dog with Red Collar",
-    description: "Found a small brown dog with a red collar at Lincoln Park. Very friendly and seems well cared for.",
-    status: "found",
-    location: "Lincoln Park, near the fountain",
-    city: "Chicago",
-    latitude: 41.921092,
-    longitude: -87.633492,
-    whatsapp_number: "+1122334455",
-    images: ["https://placehold.co/800x600/e2e8f0/94a3b8?text=Dog"],
-    created_at: new Date(Date.now() - 86400000 * 0.2).toISOString(), // ~5 hours ago
-    user_id: "user6"
-  },
-  {
-    id: "7",
-    title: "Found Keys with Bottle Opener",
-    description: "Found a set of keys with a distinctive bottle opener keychain at the bus stop on Main Street.",
-    status: "found",
-    location: "Bus Stop, Main Street",
-    city: "Los Angeles",
-    whatsapp_number: "+1567890123",
-    images: ["https://placehold.co/800x600/e2e8f0/94a3b8?text=Keys"],
-    created_at: new Date(Date.now() - 86400000 * 3).toISOString(), // 3 days ago
-    user_id: "user7"
-  },
-  {
-    id: "8",
-    title: "Found Gold Ring",
-    description: "Found a gold ring with small diamonds in the bathroom at Central Mall. Appears to be a wedding band.",
-    status: "found",
-    location: "Central Mall, women's bathroom",
-    city: "Houston",
-    whatsapp_number: "+1098765432",
-    images: ["https://placehold.co/800x600/e2e8f0/94a3b8?text=Ring"],
-    created_at: new Date(Date.now() - 86400000 * 2).toISOString(), // 2 days ago
-    user_id: "user8"
-  }
-];
+import { ItemType } from "@/types";
+import { Hand, Filter, Map } from "lucide-react";
+import { pakistaniCities } from "@/data/pakistanCities";
+import { MOCK_ITEMS_PAKISTAN } from "@/data/mockItems";
+import { Button } from "@/components/ui/button";
 
 const FoundItemsPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [items, setItems] = useState<ItemType[]>([]);
   const [activeView, setActiveView] = useState<"list" | "map">("list");
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   useEffect(() => {
     // Simulate API call
     const fetchItems = async () => {
       setIsLoading(true);
       try {
+        // Filter only found items
+        const foundItems = MOCK_ITEMS_PAKISTAN.filter(item => item.status === "found");
+        
         // In a real app, this would be a fetch call to Supabase
         setTimeout(() => {
-          setItems(MOCK_ITEMS);
+          setItems(foundItems);
           setIsLoading(false);
         }, 1000);
       } catch (error) {
@@ -101,10 +41,27 @@ const FoundItemsPage = () => {
   const handleFilterChange = (filters: any) => {
     console.log("Filters applied:", filters);
     // In a real app, we would filter the items based on these filters
-    // For now, we'll just simulate a loading state
     setIsLoading(true);
     setTimeout(() => {
-      // Filter logic would go here
+      // Simple filter implementation for city
+      let filteredItems = MOCK_ITEMS_PAKISTAN.filter(item => item.status === "found");
+      
+      if (filters.city) {
+        filteredItems = filteredItems.filter(item => 
+          item.city.toLowerCase() === filters.city.toLowerCase()
+        );
+      }
+      
+      if (filters.search) {
+        const searchLower = filters.search.toLowerCase();
+        filteredItems = filteredItems.filter(item => 
+          item.title.toLowerCase().includes(searchLower) || 
+          item.description.toLowerCase().includes(searchLower) ||
+          item.location.toLowerCase().includes(searchLower)
+        );
+      }
+      
+      setItems(filteredItems);
       setIsLoading(false);
     }, 500);
   };
@@ -123,22 +80,43 @@ const FoundItemsPage = () => {
     <div className="foundit-container py-8">
       <Helmet>
         <title>Found Items | Found It</title>
-        <meta name="description" content="Browse and search for found items reported on Found It." />
+        <meta name="description" content="Browse and search for found items reported on Found It across Pakistan." />
       </Helmet>
 
-      <div className="flex items-center mb-6">
-        <Hand className="h-6 w-6 mr-2 text-green-600" />
-        <h1 className="text-3xl font-bold">Found Items</h1>
+      <div className="flex flex-wrap items-center justify-between mb-8 gap-4">
+        <div className="flex items-center">
+          <div className="bg-green-100 p-2 rounded-lg mr-3">
+            <Hand className="h-6 w-6 text-green-600" />
+          </div>
+          <h1 className="text-3xl font-bold">Found Items</h1>
+        </div>
+        
+        <div className="flex items-center space-x-3">
+          <Button 
+            variant="outline"
+            className="border-foundit-muted text-foundit-muted hover:bg-foundit-muted hover:text-white"
+            onClick={() => setIsFilterOpen(!isFilterOpen)}
+          >
+            <Filter className="mr-2 h-4 w-4" />
+            Filters
+          </Button>
+          
+          <Tabs value={activeView} onValueChange={(v) => setActiveView(v as "list" | "map")}>
+            <TabsList className="grid w-[180px] grid-cols-2">
+              <TabsTrigger value="list">List View</TabsTrigger>
+              <TabsTrigger value="map">Map View</TabsTrigger>
+            </TabsList>
+          </Tabs>
+        </div>
       </div>
 
-      <ItemFilters onFilterChange={handleFilterChange} cities={MOCK_CITIES} />
+      <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isFilterOpen ? 'max-h-96' : 'max-h-0'}`}>
+        <div className="bg-white p-5 rounded-lg shadow-md mb-6">
+          <ItemFilters onFilterChange={handleFilterChange} cities={pakistaniCities} />
+        </div>
+      </div>
 
-      <Tabs defaultValue="list" value={activeView} onValueChange={(v) => setActiveView(v as "list" | "map")}>
-        <TabsList className="mb-6">
-          <TabsTrigger value="list">List View</TabsTrigger>
-          <TabsTrigger value="map">Map View</TabsTrigger>
-        </TabsList>
-
+      <Tabs value={activeView} onValueChange={(v) => setActiveView(v as "list" | "map")}>
         <TabsContent value="list">
           <ItemGrid 
             items={items} 
@@ -149,10 +127,14 @@ const FoundItemsPage = () => {
         </TabsContent>
 
         <TabsContent value="map">
-          <div className="bg-gray-100 rounded-lg h-[60vh] flex items-center justify-center">
-            <p className="text-gray-500">
-              Map view will be implemented with Google Maps SDK.
-            </p>
+          <div className="bg-gray-50 border border-gray-200 rounded-lg h-[70vh] flex items-center justify-center text-center p-6">
+            <div>
+              <Map className="h-16 w-16 text-gray-300 mx-auto mb-4" />
+              <h3 className="text-xl font-medium mb-2">Map View</h3>
+              <p className="text-gray-500 max-w-md mx-auto">
+                Interactive map view will be implemented with Google Maps SDK integration to show found items across Pakistan.
+              </p>
+            </div>
           </div>
         </TabsContent>
       </Tabs>

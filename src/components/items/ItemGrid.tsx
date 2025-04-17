@@ -30,7 +30,7 @@ const ItemGrid = ({
 
   if (isLoading) {
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {[...Array(8)].map((_, index) => (
           <div key={index} className="item-card animate-pulse">
             <div className="card-img-container bg-gray-200"></div>
@@ -40,7 +40,7 @@ const ItemGrid = ({
               <div className="h-4 bg-gray-200 rounded mb-2"></div>
               <div className="h-4 bg-gray-200 rounded mb-4 w-3/4"></div>
               <div className="flex justify-between items-center">
-                <div className="h-3 bg-gray-200 rounded w-1/3"></div>
+                <div className="h-8 w-8 rounded-full bg-gray-200"></div>
                 <div className="h-3 bg-gray-200 rounded w-1/4"></div>
               </div>
             </div>
@@ -60,19 +60,19 @@ const ItemGrid = ({
 
   return (
     <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {items.map((item) => (
           <ItemCard key={item.id} item={item} />
         ))}
       </div>
 
       {hasMore && (
-        <div className="text-center mt-8">
+        <div className="text-center mt-10 mb-4">
           <Button 
             onClick={handleLoadMore}
             disabled={loadingMore}
             variant="outline"
-            className="border-foundit-purple text-foundit-purple hover:bg-foundit-purple hover:text-white"
+            className="border-foundit-secondary text-foundit-secondary hover:bg-foundit-secondary hover:text-white px-8"
           >
             {loadingMore ? (
               <>

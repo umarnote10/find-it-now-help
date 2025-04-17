@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,7 +7,7 @@
 
 @layer base {
   :root {
-    --background: 260 100% 99%;
+    --background: 214 100% 98%;
     --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
@@ -16,16 +16,16 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 262 83% 66%;
+    --primary: 225 64% 40%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 262 38% 54%;
+    --secondary: 244 88% 59%;
     --secondary-foreground: 210 40% 98%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
+    --accent: 35 92% 51%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
@@ -33,9 +33,9 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 262 83% 66%;
+    --ring: 244 88% 59%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -57,16 +57,16 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 262 83% 66%;
+    --primary: 225 64% 40%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 262 38% 54%;
+    --secondary: 244 88% 59%;
     --secondary-foreground: 210 40% 98%;
 
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 217.2 32.6% 17.5%;
+    --accent: 35 92% 51%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
@@ -74,7 +74,7 @@
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 262.1 83.3% 57.8%;
+    --ring: 244 88% 59%;
 
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -90,23 +90,22 @@
 @layer base {
   * {
     @apply border-border;
-    font-family: 'Inter', sans-serif;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-poppins;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight;
+    @apply font-montserrat font-semibold tracking-tight;
   }
 
   h1 {
-    @apply text-3xl md:text-4xl;
+    @apply text-3xl md:text-4xl lg:text-5xl;
   }
 
   h2 {
-    @apply text-2xl md:text-3xl;
+    @apply text-2xl md:text-3xl lg:text-4xl;
   }
 
   h3 {
@@ -120,7 +119,7 @@
   }
   
   .item-card {
-    @apply bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300;
+    @apply bg-foundit-cardBg rounded-xl shadow-card overflow-hidden hover:shadow-card-hover transition-shadow duration-300 border border-gray-100;
   }
 
   .card-img-container {
@@ -128,26 +127,83 @@
   }
   
   .card-img {
-    @apply w-full h-full object-cover;
+    @apply w-full h-full object-cover transition-transform duration-300 hover:scale-105;
   }
 
   .card-content {
-    @apply p-4;
+    @apply p-4 sm:p-5;
   }
 
   .card-title {
-    @apply text-lg font-medium mb-1 line-clamp-1;
+    @apply text-lg font-medium mb-2 line-clamp-1 text-foundit-dark;
   }
 
   .card-location {
-    @apply text-sm text-gray-500 flex items-center gap-1 mb-2;
+    @apply text-sm text-foundit-muted flex items-center gap-1.5 mb-3;
   }
 
   .card-description {
-    @apply text-sm text-gray-700 line-clamp-2 mb-3;
+    @apply text-sm text-gray-700 line-clamp-2 mb-4;
   }
 
   .whatsapp-btn {
-    @apply bg-[#25D366] text-white py-2 px-4 rounded-md flex items-center justify-center gap-2 hover:bg-[#128C7E] transition-colors w-full;
+    @apply bg-[#25D366] text-white py-2.5 px-4 rounded-lg flex items-center justify-center gap-2 hover:bg-[#128C7E] transition-colors w-full shadow-button;
   }
+  
+  .btn-primary {
+    @apply bg-gradient-main text-white py-2.5 px-6 rounded-lg shadow-button hover:opacity-90 transition-all duration-300 flex items-center justify-center gap-2;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-foundit-primary py-2.5 px-6 rounded-lg border border-foundit-primary shadow-button hover:bg-foundit-primary hover:text-white transition-all duration-300 flex items-center justify-center gap-2;
+  }
+  
+  .btn-accent {
+    @apply bg-gradient-accent text-white py-2.5 px-6 rounded-lg shadow-button hover:opacity-90 transition-all duration-300 flex items-center justify-center gap-2;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-foundit-secondary focus:border-transparent shadow-input;
+  }
+  
+  .section-title {
+    @apply text-2xl md:text-3xl font-semibold mb-6 text-foundit-dark;
+  }
+  
+  .section-subtitle {
+    @apply text-lg text-foundit-muted mb-10 max-w-3xl mx-auto;
+  }
+  
+  .badge-lost {
+    @apply bg-red-100 text-red-800 px-2.5 py-1 rounded-full text-xs font-medium;
+  }
+  
+  .badge-found {
+    @apply bg-green-100 text-green-800 px-2.5 py-1 rounded-full text-xs font-medium;
+  }
+  
+  .animate-fade {
+    @apply animate-fade-in;
+  }
+  
+  .animate-slide {
+    @apply animate-slide-in;
+  }
+  
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-sm border border-white/20 rounded-xl shadow-card;
+  }
+  
+  .feature-icon {
+    @apply w-12 h-12 rounded-xl bg-gradient-main text-white flex items-center justify-center mb-4;
+  }
+}
+
+/* Custom Fonts */
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.font-montserrat {
+  font-family: 'Montserrat', sans-serif;
 }
