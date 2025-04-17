@@ -1,3 +1,4 @@
+
 export type UserType = {
   id: string;
   email?: string;
@@ -25,6 +26,8 @@ export type ItemType = {
   user_name?: string;
   user_profile_image?: string;
   language: ItemLanguage;
+  latitude?: number;
+  longitude?: number;
 }
 
 export type CityOption = {
