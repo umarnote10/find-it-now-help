@@ -20,6 +20,8 @@ export type ItemType = {
   images: string[];
   created_at: string;
   user_id: string;
+  latitude?: number;
+  longitude?: number;
 }
 
 export type CityOption = {

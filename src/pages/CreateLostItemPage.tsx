@@ -36,8 +36,6 @@ const CreateLostItemPage = () => {
     rewardNote: "",
     whatsappNumber: "",
     images: [] as File[],
-    latitude: 0,
-    longitude: 0,
   });
 
   const handleChange = (
@@ -50,12 +48,10 @@ const CreateLostItemPage = () => {
     }));
   };
 
-  const handleLocationSelect = (location: string, latitude: number, longitude: number) => {
+  const handleLocationSelect = (location: string) => {
     setFormData((prev) => ({
       ...prev,
       location,
-      latitude,
-      longitude,
     }));
   };
 
