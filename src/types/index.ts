@@ -15,8 +15,6 @@ export type ItemType = {
   status: ItemStatus;
   location: string;
   city: string;
-  latitude?: number;
-  longitude?: number;
   reward_note?: string;
   whatsapp_number?: string;
   images: string[];
