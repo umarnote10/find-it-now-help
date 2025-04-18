@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -83,20 +84,6 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-}
-
-@layer utilities {
-  .bg-gradient-main {
-    @apply bg-gradient-to-r from-[#08203e] to-[#557c93];
-  }
-  
-  .bg-gradient-secondary {
-    @apply bg-gradient-to-r from-[#211f2f] to-[#918ca9];
-  }
-  
-  .text-gradient-main {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#08203e] to-[#557c93];
   }
 }
 
