@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { MapPin, Hand, Search, ArrowRight, Clock, MapPinned, MessageSquare, CheckCircle2, Award, ShieldCheck, Users, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -158,19 +159,19 @@ const Index = () => {
       <section className="py-16 bg-white">
         <div className="foundit-container">
           <div className="text-center mb-12">
-            <h2 className="section-title text-[#08203e]">Recently Reported Items</h2>
-            <p className="section-subtitle text-[#918ca9]">Browse through the most recent lost and found items across Pakistan</p>
+            <h2 className="section-title">Recently Reported Items</h2>
+            <p className="section-subtitle">Browse through the most recent lost and found items across Pakistan</p>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredItems.slice(0, 16).map(item => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {featuredItems.map(item => (
               <ItemCard key={item.id} item={item} />
             ))}
           </div>
           
           <div className="text-center mt-10">
-            <Link to="/lost-items">
-              <Button className="bg-[#557c93] hover:bg-[#211f2f] text-white">
+            <Link to={featuredItems[0].status === "lost" ? "/lost-items" : "/found-items"}>
+              <Button variant="outline" className="border-foundit-secondary text-foundit-secondary hover:bg-foundit-secondary hover:text-white">
                 View All Items <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>

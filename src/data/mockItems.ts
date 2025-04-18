@@ -1,41 +1,87 @@
+
 import { ItemType } from "@/types";
-import { mockImages } from "./mockImages";
+
+export const pakistaniUserNames = [
+  { name: "Muhammad Ali", image: "https://i.pravatar.cc/150?img=11" },
+  { name: "Fatima Khan", image: "https://i.pravatar.cc/150?img=5" },
+  { name: "Ahmed Hassan", image: "https://i.pravatar.cc/150?img=12" },
+  { name: "Ayesha Malik", image: "https://i.pravatar.cc/150?img=23" },
+  { name: "Zafar Iqbal", image: "https://i.pravatar.cc/150?img=32" },
+  { name: "Sana Nawaz", image: "https://i.pravatar.cc/150?img=25" },
+  { name: "Imran Shah", image: "https://i.pravatar.cc/150?img=13" },
+  { name: "Zara Ahmed", image: "https://i.pravatar.cc/150?img=20" },
+  { name: "Omar Farooq", image: "https://i.pravatar.cc/150?img=15" },
+  { name: "Hina Javed", image: "https://i.pravatar.cc/150?img=29" },
+  { name: "Asad Mahmood", image: "https://i.pravatar.cc/150?img=17" },
+  { name: "Nadia Hussain", image: "https://i.pravatar.cc/150?img=24" },
+  { name: "Kamran Akmal", image: "https://i.pravatar.cc/150?img=61" },
+  { name: "Saima Rashid", image: "https://i.pravatar.cc/150?img=45" },
+  { name: "Bilal Ahmad", image: "https://i.pravatar.cc/150?img=53" }
+];
+
+export const mockImages = {
+  wallets: [
+    "https://images.pexels.com/photos/669996/pexels-photo-669996.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "https://images.pexels.com/photos/4386431/pexels-photo-4386431.jpeg?auto=compress&cs=tinysrgb&w=800"
+  ],
+  phones: [
+    "https://images.pexels.com/photos/1092644/pexels-photo-1092644.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=800"
+  ],
+  keys: [
+    "https://images.pexels.com/photos/1454172/pexels-photo-1454172.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "https://images.pexels.com/photos/5613456/pexels-photo-5613456.jpeg?auto=compress&cs=tinysrgb&w=800"
+  ],
+  bags: [
+    "https://images.pexels.com/photos/1002638/pexels-photo-1002638.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "https://images.pexels.com/photos/2081199/pexels-photo-2081199.jpeg?auto=compress&cs=tinysrgb&w=800"
+  ],
+  jewelry: [
+    "https://images.pexels.com/photos/10894/pexels-photo-10894.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "https://images.pexels.com/photos/9428308/pexels-photo-9428308.jpeg?auto=compress&cs=tinysrgb&w=800"
+  ],
+  pets: [
+    "https://images.pexels.com/photos/58997/pexels-photo-58997.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "https://images.pexels.com/photos/1741205/pexels-photo-1741205.jpeg?auto=compress&cs=tinysrgb&w=800"
+  ]
+};
 
 export const MOCK_ITEMS_PAKISTAN: ItemType[] = [
   {
     id: "1",
-    title: "Mobile Phone Gum Gaya",
-    description: "Mera iPhone 14 Pro Max silver color ka mobile phone Metro station k pass gum ho gaya hai. Koi mile to please contact karen.",
+    title: "Lost Black Leather Wallet near Centaurus Mall",
+    description: "I lost my wallet on Saturday evening near Centaurus Mall in Islamabad. It contains my CNIC, driving license and bank cards. It has sentimental value as it was a gift from my father.",
     status: "lost",
     location: "Centaurus Mall, Jinnah Avenue",
     city: "Islamabad",
-    reward_note: "Rs. 10,000 Inaam",
+    reward_note: "Rs. 5000 reward for safe return",
     whatsapp_number: "+923001234567",
-    images: [mockImages.phones[0]],
-    created_at: new Date(Date.now() - 86400000 * 1.2).toISOString(),
+    images: [mockImages.wallets[0]],
+    created_at: new Date(Date.now() - 86400000 * 1.2).toISOString(), // ~29 hours ago
     user_id: "user1",
     user_name: "Ahmed Hassan",
     user_profile_image: "https://i.pravatar.cc/150?img=12",
     latitude: 33.7067,
     longitude: 73.0497,
-    language: "ur"
+    language: "en"
   },
   {
     id: "2",
-    title: "Lost Gold Bracelet at Liberty Market",
-    description: "I lost my gold bracelet while shopping at Liberty Market. It has sentimental value as it was a gift from my mother.",
+    title: "Lost iPhone 14 Pro at Packages Mall",
+    description: "I lost my iPhone 14 Pro (black) at the food court in Packages Mall. It has a clear case with my university ID card inside. The phone has important family photos that aren't backed up.",
     status: "lost",
-    location: "Liberty Market",
+    location: "Packages Mall, Food Court",
     city: "Lahore",
-    reward_note: "Rs. 5,000 reward for safe return",
+    latitude: 31.4718,
+    longitude: 74.3434,
     whatsapp_number: "+923214567890",
-    images: [mockImages.jewelry[0]],
-    created_at: new Date(Date.now() - 86400000 * 0.5).toISOString(),
+    reward_note: "Rs. 10,000 reward, no questions asked",
+    images: [mockImages.phones[0], mockImages.phones[1]],
+    created_at: new Date(Date.now() - 86400000 * 0.5).toISOString(), // 12 hours ago
     user_id: "user2",
     user_name: "Fatima Khan",
     user_profile_image: "https://i.pravatar.cc/150?img=5",
-    latitude: 31.4718,
-    longitude: 74.3434,
     language: "en"
   },
   {
@@ -49,7 +95,7 @@ export const MOCK_ITEMS_PAKISTAN: ItemType[] = [
     longitude: 67.0339,
     whatsapp_number: "+923123456789",
     images: [mockImages.keys[0]],
-    created_at: new Date(Date.now() - 86400000 * 0.7).toISOString(),
+    created_at: new Date(Date.now() - 86400000 * 0.7).toISOString(), // ~17 hours ago
     user_id: "user3",
     user_name: "Zafar Iqbal",
     user_profile_image: "https://i.pravatar.cc/150?img=32",
@@ -64,7 +110,7 @@ export const MOCK_ITEMS_PAKISTAN: ItemType[] = [
     city: "Peshawar",
     whatsapp_number: "+923339876543",
     images: ["https://images.pexels.com/photos/701877/pexels-photo-701877.jpeg?auto=compress&cs=tinysrgb&w=800"],
-    created_at: new Date(Date.now() - 86400000 * 1.5).toISOString(),
+    created_at: new Date(Date.now() - 86400000 * 1.5).toISOString(), // 36 hours ago
     user_id: "user4",
     user_name: "Ayesha Malik",
     user_profile_image: "https://i.pravatar.cc/150?img=23",
@@ -82,7 +128,7 @@ export const MOCK_ITEMS_PAKISTAN: ItemType[] = [
     latitude: 33.6033,
     longitude: 73.0691,
     images: [mockImages.phones[2]],
-    created_at: new Date(Date.now() - 86400000 * 0.2).toISOString(),
+    created_at: new Date(Date.now() - 86400000 * 0.2).toISOString(), // ~5 hours ago
     user_id: "user5",
     user_name: "Muhammad Ali",
     user_profile_image: "https://i.pravatar.cc/150?img=11",
@@ -97,7 +143,7 @@ export const MOCK_ITEMS_PAKISTAN: ItemType[] = [
     city: "Rawalpindi",
     whatsapp_number: "+923338765432",
     images: [mockImages.pets[0]],
-    created_at: new Date(Date.now() - 86400000 * 0.3).toISOString(),
+    created_at: new Date(Date.now() - 86400000 * 0.3).toISOString(), // ~7 hours ago
     user_id: "user6",
     user_name: "Sana Nawaz",
     user_profile_image: "https://i.pravatar.cc/150?img=25",
@@ -115,7 +161,7 @@ export const MOCK_ITEMS_PAKISTAN: ItemType[] = [
     whatsapp_number: "+923451234567",
     reward_note: "Rs. 25,000 reward for return",
     images: [mockImages.jewelry[0]],
-    created_at: new Date(Date.now() - 86400000 * 2).toISOString(),
+    created_at: new Date(Date.now() - 86400000 * 2).toISOString(), // 2 days ago
     user_id: "user7",
     user_name: "Imran Shah",
     user_profile_image: "https://i.pravatar.cc/150?img=13",
@@ -133,7 +179,7 @@ export const MOCK_ITEMS_PAKISTAN: ItemType[] = [
     whatsapp_number: "+923159876543",
     reward_note: "Rs. 3,000 reward offered",
     images: [mockImages.bags[0]],
-    created_at: new Date(Date.now() - 86400000 * 1).toISOString(),
+    created_at: new Date(Date.now() - 86400000 * 1).toISOString(), // 1 day ago
     user_id: "user8",
     user_name: "Zara Ahmed",
     user_profile_image: "https://i.pravatar.cc/150?img=20",
@@ -150,7 +196,7 @@ export const MOCK_ITEMS_PAKISTAN: ItemType[] = [
     city: "Lahore",
     whatsapp_number: "+923012345678",
     images: [mockImages.jewelry[1]],
-    created_at: new Date(Date.now() - 86400000 * 3).toISOString(),
+    created_at: new Date(Date.now() - 86400000 * 3).toISOString(), // 3 days ago
     user_id: "user9",
     user_name: "Omar Farooq",
     user_profile_image: "https://i.pravatar.cc/150?img=15",
@@ -167,7 +213,7 @@ export const MOCK_ITEMS_PAKISTAN: ItemType[] = [
     city: "Rawalpindi",
     whatsapp_number: "+923145678901",
     images: ["https://images.pexels.com/photos/303383/pexels-photo-303383.jpeg?auto=compress&cs=tinysrgb&w=800"],
-    created_at: new Date(Date.now() - 86400000 * 2.5).toISOString(),
+    created_at: new Date(Date.now() - 86400000 * 2.5).toISOString(), // 2.5 days ago
     user_id: "user10",
     user_name: "Hina Javed",
     user_profile_image: "https://i.pravatar.cc/150?img=29",
@@ -185,7 +231,7 @@ export const MOCK_ITEMS_PAKISTAN: ItemType[] = [
     whatsapp_number: "+923339876543",
     reward_note: "Rs. 8,000 reward for return of bag with documents",
     images: [mockImages.bags[1]],
-    created_at: new Date(Date.now() - 86400000 * 0.8).toISOString(),
+    created_at: new Date(Date.now() - 86400000 * 0.8).toISOString(), // ~19 hours ago
     user_id: "user11",
     user_name: "Asad Mahmood",
     user_profile_image: "https://i.pravatar.cc/150?img=17",
@@ -202,7 +248,7 @@ export const MOCK_ITEMS_PAKISTAN: ItemType[] = [
     city: "Islamabad",
     whatsapp_number: "+923321234567",
     images: ["https://images.pexels.com/photos/6693657/pexels-photo-6693657.jpeg?auto=compress&cs=tinysrgb&w=800"],
-    created_at: new Date(Date.now() - 86400000 * 0.4).toISOString(),
+    created_at: new Date(Date.now() - 86400000 * 0.4).toISOString(), // ~10 hours ago
     user_id: "user12",
     user_name: "Nadia Hussain",
     user_profile_image: "https://i.pravatar.cc/150?img=24",
