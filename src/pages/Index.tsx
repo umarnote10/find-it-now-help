@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { MapPin, Hand, Search, ArrowRight, Clock, MapPinned, MessageSquare, CheckCircle2, Award, ShieldCheck, Users, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,7 +8,7 @@ import ItemCard from "@/components/items/ItemCard";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [featuredItems, setFeaturedItems] = useState(MOCK_ITEMS_PAKISTAN.slice(0, 4));
+  const [featuredItems, setFeaturedItems] = useState(MOCK_ITEMS_PAKISTAN.slice(0, 16));
   
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,8 +19,8 @@ const Index = () => {
   
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-foundit-primary/5 via-foundit-secondary/5 to-white pt-12 pb-20 sm:pt-20 sm:pb-24">
+      {/* Hero Section - Increased height and enhanced design */}
+      <section className="bg-gradient-to-br from-[#08203e] via-[#557c93] to-[#211f2f] pt-16 pb-24 sm:pt-24 sm:pb-32 min-h-[600px] flex items-center">
         <div className="foundit-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div className="animate-fade space-y-6">
@@ -155,15 +154,16 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Featured Items */}
-      <section className="py-16 bg-white">
+      {/* Featured Items - Enhanced card design */}
+      <section className="py-20 bg-gradient-to-b from-white to-gray-50">
         <div className="foundit-container">
-          <div className="text-center mb-12">
-            <h2 className="section-title">Recently Reported Items</h2>
-            <p className="section-subtitle">Browse through the most recent lost and found items across Pakistan</p>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#08203e] mb-4">Recently Reported Items</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-[#557c93] to-[#918ca9] mx-auto mb-4"></div>
+            <p className="text-lg text-[#211f2f]/80">Browse through the most recent lost and found items across Pakistan</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {featuredItems.map(item => (
               <ItemCard key={item.id} item={item} />
             ))}
@@ -179,12 +179,13 @@ const Index = () => {
         </div>
       </section>
       
-      {/* How It Works */}
-      <section className="py-16 bg-gray-50">
+      {/* How It Works - Enhanced design */}
+      <section className="py-20 bg-gradient-to-br from-[#08203e]/5 to-[#557c93]/5">
         <div className="foundit-container">
-          <div className="text-center mb-12">
-            <h2 className="section-title">How Found It Works</h2>
-            <p className="section-subtitle">Simple steps to report and recover lost items</p>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#08203e] mb-4">How Found It Works</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-[#557c93] to-[#918ca9] mx-auto mb-4"></div>
+            <p className="text-lg text-[#211f2f]/80">Simple steps to report and recover lost items</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -227,12 +228,13 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Features */}
-      <section className="py-16 bg-white">
+      {/* Features - Enhanced design */}
+      <section className="py-20 bg-white">
         <div className="foundit-container">
-          <div className="text-center mb-12">
-            <h2 className="section-title">Why Choose Found It</h2>
-            <p className="section-subtitle">The best way to recover lost items across Pakistan</p>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#08203e] mb-4">Why Choose Found It</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-[#557c93] to-[#918ca9] mx-auto mb-4"></div>
+            <p className="text-lg text-[#211f2f]/80">The best way to recover lost items across Pakistan</p>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

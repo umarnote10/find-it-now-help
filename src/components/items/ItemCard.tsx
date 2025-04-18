@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { MapPin, Clock, Shield, Award } from "lucide-react";
 import { ItemType } from "@/types";
@@ -14,51 +13,41 @@ const ItemCard = ({ item }: ItemCardProps) => {
   const profileImage = item.user_profile_image || `https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 70)}`;
 
   return (
-    <div className="item-card group animate-fade">
-      <div className="relative overflow-hidden rounded-xl">
-        <div className="card-img-container aspect-[4/3] overflow-hidden">
-          <img
-            src={item.images[0]}
-            alt={item.title}
-            className="card-img w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-          />
-        </div>
-        
-        <div className="absolute top-0 right-0 m-2">
+    <div className="group overflow-hidden rounded-xl bg-white border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
+      <div className="relative overflow-hidden aspect-[4/3]">
+        <img
+          src={item.images[0]}
+          alt={item.title}
+          className="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110"
+        />
+        <div className="absolute top-3 right-3">
           {item.status === "lost" ? (
-            <span className="badge-lost bg-red-500 text-white px-2 py-1 rounded-md text-xs font-medium">
+            <span className="px-3 py-1 bg-red-500 text-white text-sm font-medium rounded-full">
               Lost
             </span>
           ) : (
-            <span className="badge-found bg-green-500 text-white px-2 py-1 rounded-md text-xs font-medium">
+            <span className="px-3 py-1 bg-green-500 text-white text-sm font-medium rounded-full">
               Found
             </span>
           )}
         </div>
-        
-        {item.reward_note && (
-          <div className="absolute bottom-0 left-0 m-2 bg-foundit-accent/90 text-white px-2 py-1 rounded-md text-xs flex items-center">
-            <Award className="h-3 w-3 mr-1" />
-            <span>Reward</span>
-          </div>
-        )}
       </div>
       
-      <div className="p-4">
+      <div className="p-5">
         <h3 className={cn(
-          "text-lg font-semibold mb-2 line-clamp-2 group-hover:text-foundit-secondary transition-colors",
+          "text-lg font-semibold mb-2 text-[#08203e] group-hover:text-[#557c93] transition-colors line-clamp-2",
           item.language === 'ur' ? "font-urdu text-right" : ""
         )}>
           {item.title}
         </h3>
         
         <div className={cn(
-          "flex items-start space-x-1 mb-2",
+          "flex items-start space-x-1 mb-3",
           item.language === 'ur' ? "flex-row-reverse space-x-reverse" : ""
         )}>
-          <MapPin className="h-4 w-4 mt-1 text-foundit-secondary flex-shrink-0" />
+          <MapPin className="h-4 w-4 mt-1 text-[#557c93] flex-shrink-0" />
           <span className={cn(
-            "text-sm text-gray-600",
+            "text-sm text-[#211f2f]/70",
             item.language === 'ur' ? "font-urdu" : ""
           )}>
             {item.city}, {item.location}
@@ -66,13 +55,13 @@ const ItemCard = ({ item }: ItemCardProps) => {
         </div>
         
         <p className={cn(
-          "text-sm text-gray-500 mb-4 line-clamp-2",
+          "text-sm text-[#211f2f]/60 mb-4 line-clamp-2",
           item.language === 'ur' ? "font-urdu text-right" : ""
         )}>
           {item.description}
         </p>
         
-        <div className="flex items-center justify-between mt-3">
+        <div className="flex items-center justify-between border-t pt-4 mt-4">
           <div className="flex items-center space-x-2">
             <div className="h-8 w-8 rounded-full overflow-hidden border-2 border-white shadow-sm">
               <img 
@@ -81,7 +70,7 @@ const ItemCard = ({ item }: ItemCardProps) => {
                 className="h-full w-full object-cover"
               />
             </div>
-            <div className="flex items-center text-xs text-gray-500">
+            <div className="flex items-center text-xs text-[#211f2f]/50">
               <Clock className="mr-1 h-3.5 w-3.5" />
               <span>{timeAgo}</span>
             </div>
@@ -89,7 +78,7 @@ const ItemCard = ({ item }: ItemCardProps) => {
           
           <Link 
             to={`/item/${item.id}`}
-            className="text-sm font-medium text-foundit-secondary hover:text-foundit-primary hover:underline transition-colors"
+            className="text-sm font-medium text-[#557c93] hover:text-[#08203e] transition-colors"
           >
             {item.language === 'ur' ? "تفصیلات دیکھیں" : "View Details"}
           </Link>
