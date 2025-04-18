@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import { MapPin, Hand, Search, ArrowRight, Clock, MapPinned, MessageSquare, CheckCircle2, Award, ShieldCheck, Users, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { MOCK_ITEMS_PAKISTAN } from "@/data/mockItems";
 import ItemCard from "@/components/items/ItemCard";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [featuredItems, setFeaturedItems] = useState(MOCK_ITEMS_PAKISTAN.slice(0, 4));
+  const [featuredItems, setFeaturedItems] = useState(MOCK_ITEMS_PAKISTAN.slice(0, 16));
   
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,35 +20,36 @@ const Index = () => {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-foundit-primary/5 via-foundit-secondary/5 to-white pt-12 pb-20 sm:pt-20 sm:pb-24">
-        <div className="foundit-container">
+      <section className="relative min-h-[90vh] bg-gradient-to-br from-[#08203e] via-[#557c93] to-[#211f2f] pt-16 pb-24">
+        <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/2007647/pexels-photo-2007647.jpeg?auto=compress&cs=tinysrgb&w=1600')] bg-cover bg-center opacity-10"></div>
+        <div className="foundit-container relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-            <div className="animate-fade space-y-6">
-              <div className="flex items-center gap-1.5">
-                <div className="h-1.5 w-1.5 rounded-full bg-foundit-accent"></div>
-                <div className="h-1.5 w-1.5 rounded-full bg-foundit-secondary"></div>
-                <div className="h-1.5 w-1.5 rounded-full bg-foundit-primary"></div>
-                <span className="ml-2 text-sm font-medium text-foundit-primary">Pakistan's Lost & Found Platform</span>
+            <div className="animate-fade space-y-8">
+              <div className="flex items-center gap-2">
+                <span className="px-4 py-1.5 rounded-full bg-white/10 text-sm font-medium text-white backdrop-blur-sm border border-white/20">
+                  Pakistan's Lost & Found Platform
+                </span>
               </div>
               
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foundit-dark">
-                <span className="text-transparent bg-clip-text bg-gradient-main">Lost something?</span><br />
-                Let's find it <span className="text-foundit-accent">together.</span>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight">
+                Lost something?<br />
+                <span className="text-[#918ca9]">Let's find it</span>
+                <span className="text-[#557c93]"> together.</span>
               </h1>
               
-              <p className="text-lg text-gray-700 max-w-2xl">
+              <p className="text-xl text-gray-300 max-w-2xl leading-relaxed">
                 The simplest way to report lost items across Pakistan and reunite with your valuables. Direct contact via WhatsApp, no middleman.
               </p>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
                 <Link to="/post/lost">
-                  <Button className="w-full bg-gradient-main hover:opacity-90">
+                  <Button className="w-full h-12 bg-white hover:bg-gray-100 text-[#08203e]">
                     <MapPin className="mr-2 h-5 w-5" />
                     Report Lost Item
                   </Button>
                 </Link>
                 <Link to="/post/found">
-                  <Button variant="outline" className="w-full border-foundit-secondary text-foundit-secondary hover:bg-foundit-secondary hover:text-white">
+                  <Button variant="outline" className="w-full h-12 border-white text-white hover:bg-white hover:text-[#08203e]">
                     <Hand className="mr-2 h-5 w-5" />
                     Report Found Item
                   </Button>
@@ -62,11 +63,14 @@ const Index = () => {
                 <input
                   type="text"
                   placeholder="Search for lost or found items in Pakistan..."
-                  className="input-field pl-12"
+                  className="w-full h-14 pl-12 pr-36 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#557c93] focus:border-transparent"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                <Button type="submit" className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-main hover:opacity-90 h-10">
+                <Button 
+                  type="submit" 
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#557c93] hover:bg-[#211f2f] text-white h-10"
+                >
                   Search
                 </Button>
               </form>
@@ -133,22 +137,22 @@ const Index = () => {
           </div>
           
           {/* Stats */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-16 bg-white rounded-xl p-5 shadow-card">
-            <div className="text-center">
-              <div className="text-foundit-primary text-3xl font-bold">2,500+</div>
-              <div className="text-gray-600 text-sm">Items Reported</div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-16">
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 text-center">
+              <div className="text-[#557c93] text-4xl font-bold mb-2">2,500+</div>
+              <div className="text-white text-sm">Items Reported</div>
             </div>
-            <div className="text-center">
-              <div className="text-foundit-accent text-3xl font-bold">1,800+</div>
-              <div className="text-gray-600 text-sm">Items Returned</div>
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 text-center">
+              <div className="text-[#557c93] text-4xl font-bold mb-2">1,800+</div>
+              <div className="text-white text-sm">Items Returned</div>
             </div>
-            <div className="text-center">
-              <div className="text-foundit-secondary text-3xl font-bold">15K+</div>
-              <div className="text-gray-600 text-sm">Active Users</div>
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 text-center">
+              <div className="text-[#557c93] text-4xl font-bold mb-2">15K+</div>
+              <div className="text-white text-sm">Active Users</div>
             </div>
-            <div className="text-center">
-              <div className="text-green-500 text-3xl font-bold">72%</div>
-              <div className="text-gray-600 text-sm">Success Rate</div>
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 text-center">
+              <div className="text-[#557c93] text-4xl font-bold mb-2">72%</div>
+              <div className="text-white text-sm">Success Rate</div>
             </div>
           </div>
         </div>
