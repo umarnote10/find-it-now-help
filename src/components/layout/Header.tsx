@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { MobileNav } from "./MobileNav";
-import { Search, MapPin, Hand, User } from "lucide-react";
+import { Search, MapPin, Hand, Menu } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -20,7 +20,6 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="foundit-container flex h-16 items-center justify-between">
-        {/* Logo */}
         <div className="flex items-center">
           <Link to="/" className="flex items-center gap-2">
             <MapPin className="h-6 w-6 text-foundit-purple" />
@@ -40,7 +39,6 @@ const Header = () => {
             />
             <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
           </form>
-          
           <nav className="flex items-center space-x-1">
             <Link to="/lost-items">
               <Button variant="ghost" size="sm" className="text-gray-700 hover:text-foundit-purple">
@@ -64,17 +62,9 @@ const Header = () => {
                 <span>Report Found</span>
               </Button>
             </Link>
-            
-            {/* Login/Signup Buttons */}
             <Link to="/auth">
-              <Button variant="ghost" size="sm" className="flex items-center text-gray-700 hover:text-foundit-purple">
-                <User className="mr-1 h-4 w-4" />
-                <span>Login</span>
-              </Button>
-            </Link>
-            <Link to="/auth?tab=register">
-              <Button size="sm" className="bg-foundit-purple hover:bg-foundit-purpleDark text-white">
-                Sign Up
+              <Button size="sm" className="bg-foundit-purple hover:bg-foundit-purpleDark">
+                Sign In
               </Button>
             </Link>
           </nav>
