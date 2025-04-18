@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { MOCK_ITEMS_PAKISTAN } from "@/data/mockItems";
 import ItemCard from "@/components/items/ItemCard";
+import TestimonialCard from "@/components/testimonials/TestimonialCard";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -240,87 +241,39 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Success Stories - Updated design */}
-      <section className="py-20 bg-white">
+      {/* Success Stories - New Design */}
+      <section className="py-20 bg-gradient-to-br from-white to-[#F8F9FF]">
         <div className="foundit-container">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Success Stories</h2>
-            <div className="w-24 h-1 bg-[#10B981] mx-auto mb-4"></div>
+            <div className="w-24 h-1 bg-[#7C3AED] mx-auto mb-4"></div>
             <p className="text-lg text-gray-600">Hear from people who recovered their lost items</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-[#F8F9FF] to-white p-8 rounded-2xl shadow-lg relative">
-              <div className="absolute top-6 right-6">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <Heart key={i} className="h-5 w-5 text-[#7C3AED]" fill="#7C3AED" />
-                  ))}
-                </div>
-              </div>
-              <div className="flex items-center mb-6">
-                <img 
-                  src="https://i.pravatar.cc/150?img=32" 
-                  alt="User" 
-                  className="h-14 w-14 rounded-full object-cover border-2 border-white shadow-md"
-                />
-                <div className="ml-4">
-                  <h4 className="font-semibold text-gray-900">Aisha Mahmood</h4>
-                  <p className="text-sm text-gray-500">Lahore</p>
-                </div>
-              </div>
-              <p className="text-gray-600 italic">
-                "Lost my wallet at a restaurant in Lahore. Within 24 hours of posting on Found It, I got a WhatsApp message and recovered it with all my documents intact!"
-              </p>
-            </div>
+            <TestimonialCard
+              name="Muhammad Ahsan"
+              city="Lahore"
+              image="https://i.pravatar.cc/150?img=32"
+              text="Alhamdulillah! Mera khooya hua wallet 24 ghante ke andar mil gaya. Found It ke through ek imaandaar insaan ne mujhe WhatsApp pe contact kiya aur wallet safely wapas kar diya."
+              rating={5}
+            />
             
-            <div className="bg-gradient-to-br from-[#F8F9FF] to-white p-8 rounded-2xl shadow-lg relative">
-              <div className="absolute top-6 right-6">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <Heart key={i} className="h-5 w-5 text-[#F59E0B]" fill="#F59E0B" />
-                  ))}
-                </div>
-              </div>
-              <div className="flex items-center mb-6">
-                <img 
-                  src="https://i.pravatar.cc/150?img=15" 
-                  alt="User" 
-                  className="h-14 w-14 rounded-full object-cover border-2 border-white shadow-md"
-                />
-                <div className="ml-4">
-                  <h4 className="font-semibold text-gray-900">Faisal Ahmed</h4>
-                  <p className="text-sm text-gray-500">Islamabad</p>
-                </div>
-              </div>
-              <p className="text-gray-600 italic">
-                "Found a child's backpack at a park in Islamabad. Posted it on Found It and was able to return it to the relieved parents the same day. This platform is a blessing!"
-              </p>
-            </div>
+            <TestimonialCard
+              name="Fatima Zahra"
+              city="Islamabad"
+              image="https://i.pravatar.cc/150?img=23"
+              text="Metro station mein mera laptop bag gir gaya tha. Found It pe post karne ke 2 ghante ke andar hi ek security guard ne mujhe contact kiya. Bohat shukriya Found It team ka!"
+              layout="quote"
+            />
             
-            <div className="bg-gradient-to-br from-[#F8F9FF] to-white p-8 rounded-2xl shadow-lg relative">
-              <div className="absolute top-6 right-6">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <Heart key={i} className="h-5 w-5 text-[#10B981]" fill="#10B981" />
-                  ))}
-                </div>
-              </div>
-              <div className="flex items-center mb-6">
-                <img 
-                  src="https://i.pravatar.cc/150?img=23" 
-                  alt="User" 
-                  className="h-14 w-14 rounded-full object-cover border-2 border-white shadow-md"
-                />
-                <div className="ml-4">
-                  <h4 className="font-semibold text-gray-900">Saima Khan</h4>
-                  <p className="text-sm text-gray-500">Karachi</p>
-                </div>
-              </div>
-              <p className="text-gray-600 italic">
-                "I lost my family heirloom ring at a wedding in Karachi. Thanks to Found It, an honest person found it and contacted me directly. I'm forever grateful!"
-              </p>
-            </div>
+            <TestimonialCard
+              name="Abdul Rahman"
+              city="Karachi"
+              image="https://i.pravatar.cc/150?img=15"
+              text="Meri beti ka school bag kisi park mein reh gaya tha. Found It ki madad se usi din bag mil gaya. Ye platform sachme ek nemat hai Pakistani awam ke liye."
+              rating={5}
+            />
           </div>
         </div>
       </section>
