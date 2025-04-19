@@ -21,7 +21,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import ImageUploader from "@/components/forms/ImageUploader";
 import CitySelector from "@/components/forms/CitySelector";
-import { pakistaniCities } from "@/data/pakistanCities";
 
 const CreateFoundItemPage = () => {
   const navigate = useNavigate();
@@ -184,7 +183,6 @@ const CreateFoundItemPage = () => {
               <CitySelector 
                 onCitySelect={handleCitySelect} 
                 initialCity={formData.city} 
-                cities={pakistaniCities}
               />
               
               <div className="space-y-2">

@@ -9,7 +9,6 @@ export type UserType = {
 }
 
 export type ItemStatus = 'lost' | 'found';
-export type ItemLanguage = 'en' | 'ur';
 
 export type ItemType = {
   id: string;
@@ -25,7 +24,6 @@ export type ItemType = {
   user_id: string;
   user_name?: string;
   user_profile_image?: string;
-  language: ItemLanguage;
   latitude?: number;
   longitude?: number;
 }
@@ -33,5 +31,4 @@ export type ItemType = {
 export type CityOption = {
   value: string;
   label: string;
-  urdu_label?: string;
 }
