@@ -198,7 +198,7 @@ const Index = () => {
                 icon: <MapPin className="w-8 h-8 text-white" />,
                 title: "Report Item",
                 description: "Report your lost item or something you found with detailed information and photos for better visibility",
-                gradient: "from-foundit-primary to-foundit-secondary",
+                gradient: "from-[#2140B2] to-[#4C45E0]",
                 delay: "0.1s"
               },
               {
@@ -206,7 +206,7 @@ const Index = () => {
                 icon: <MessageSquare className="w-8 h-8 text-white" />,
                 title: "Connect Directly",
                 description: "Connect instantly via WhatsApp when you find a match - no intermediaries or complicated processes",
-                gradient: "from-foundit-secondary to-foundit-accent",
+                gradient: "from-[#2140B2] to-[#4C45E0]",
                 delay: "0.2s"
               },
               {
@@ -214,24 +214,37 @@ const Index = () => {
                 icon: <Handshake className="w-8 h-8 text-white" />,
                 title: "Safe Return",
                 description: "Meet safely to retrieve your item and mark the report as resolved, helping build trust in our community",
-                gradient: "from-foundit-accent to-foundit-primary",
+                gradient: "from-[#2140B2] to-[#4C45E0]",
                 delay: "0.3s"
               }
             ].map(({ step, icon, title, description, gradient, delay }) => (
               <div
                 key={step}
-                className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100/50 backdrop-blur-sm animate-fade"
+                className={`
+      group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl 
+      transition-all duration-300 border border-gray-200 
+      backdrop-blur-sm animate-fade
+    `}
                 style={{ animationDelay: delay }}
               >
                 <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-                  <div className={`w-12 h-12 bg-gradient-to-r ${gradient} rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                  <div className={`
+        w-12 h-12 bg-gradient-to-r ${gradient} 
+        rounded-full flex items-center justify-center 
+        text-white font-bold text-xl shadow-lg 
+        group-hover:scale-110 transition-transform duration-300
+      `}>
                     {step}
                   </div>
                 </div>
                 
                 <div className="text-center pt-8">
                   <div className="mb-6 inline-block">
-                    <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                    <div className={`
+          w-16 h-16 rounded-xl bg-gradient-to-r ${gradient} 
+          flex items-center justify-center 
+          group-hover:scale-110 transition-transform duration-300
+        `}>
                       {icon}
                     </div>
                   </div>
@@ -243,7 +256,12 @@ const Index = () => {
                   </p>
                 </div>
                 
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r ${gradient} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-b-xl"></div>
+                <div className={`
+      absolute bottom-0 left-0 w-full h-1 
+      bg-gradient-to-r ${gradient} 
+      transform scale-x-0 group-hover:scale-x-100 
+      transition-transform duration-300 rounded-b-xl
+    `}></div>
               </div>
             ))}
           </div>
