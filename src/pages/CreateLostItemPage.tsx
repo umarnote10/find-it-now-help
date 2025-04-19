@@ -12,7 +12,8 @@ import {
   MapPinned,
   MessageSquare,
   Gift,
-  CalendarClock
+  CalendarClock,
+  ShieldCheck
 } from "lucide-react";
 import { 
   Card, 

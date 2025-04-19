@@ -16,7 +16,8 @@ import {
   Heart,
   AlertTriangle,
   Flag,
-  Map
+  Map,
+  Home
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ItemType } from "@/types";
