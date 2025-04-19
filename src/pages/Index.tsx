@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { MapPin, Hand, Search, ArrowRight, Clock, MapPinned, MessageSquare, CheckCircle2, Award, ShieldCheck, Users, Heart, Handshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -175,11 +174,15 @@ const Index = () => {
       </section>
       
       {/* How It Works */}
-      <section className="py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-white">
-        <div className="foundit-container">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foundit-dark mb-4">
-              How <span className="text-foundit-primary">Found It</span> Works
+      <section className="py-20 sm:py-24 bg-gradient-to-b from-gray-50/50 to-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(124,58,237,0.05)_0%,rgba(124,58,237,0)_100%)]"></div>
+        <div className="absolute -top-24 right-0 w-96 h-96 bg-foundit-secondary/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-foundit-primary/5 rounded-full blur-3xl"></div>
+        
+        <div className="foundit-container relative">
+          <div className="text-center mb-16 max-w-3xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foundit-dark mb-6 bg-clip-text text-transparent bg-gradient-to-r from-foundit-primary to-foundit-secondary">
+              How <span className="text-foundit-dark">Found It</span> Works
             </h2>
             <p className="text-lg text-foundit-muted max-w-2xl mx-auto">
               Three simple steps to help you recover your lost items or return found items to their rightful owners
@@ -187,68 +190,62 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-            {/* Connecting Line (visible on medium and larger screens) */}
-            <div className="hidden md:block absolute top-32 left-0 w-full h-0.5 bg-gradient-to-r from-foundit-primary via-foundit-secondary to-foundit-accent -z-10"></div>
+            <div className="hidden md:block absolute top-32 left-0 w-full h-1 bg-gradient-to-r from-foundit-primary via-foundit-secondary to-foundit-accent opacity-20 -z-10"></div>
             
-            {/* Step 1 */}
-            <div className="group relative bg-white rounded-2xl p-8 shadow-card hover:shadow-card-hover transition-all duration-300 animate-fade" style={{ animationDelay: '0.1s' }}>
-              <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-                <div className="w-12 h-12 bg-gradient-main rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  1
-                </div>
-              </div>
-              <div className="text-center pt-8">
-                <div className="mb-6 inline-block">
-                  <div className="w-16 h-16 rounded-xl bg-foundit-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <MapPin className="w-8 h-8 text-foundit-primary" />
+            {[
+              {
+                step: 1,
+                icon: <MapPin className="w-8 h-8 text-white" />,
+                title: "Report Item",
+                description: "Report your lost item or something you found with detailed information and photos for better visibility",
+                gradient: "from-foundit-primary to-foundit-secondary",
+                delay: "0.1s"
+              },
+              {
+                step: 2,
+                icon: <MessageSquare className="w-8 h-8 text-white" />,
+                title: "Connect Directly",
+                description: "Connect instantly via WhatsApp when you find a match - no intermediaries or complicated processes",
+                gradient: "from-foundit-secondary to-foundit-accent",
+                delay: "0.2s"
+              },
+              {
+                step: 3,
+                icon: <Handshake className="w-8 h-8 text-white" />,
+                title: "Safe Return",
+                description: "Meet safely to retrieve your item and mark the report as resolved, helping build trust in our community",
+                gradient: "from-foundit-accent to-foundit-primary",
+                delay: "0.3s"
+              }
+            ].map(({ step, icon, title, description, gradient, delay }) => (
+              <div
+                key={step}
+                className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100/50 backdrop-blur-sm animate-fade"
+                style={{ animationDelay: delay }}
+              >
+                <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                  <div className={`w-12 h-12 bg-gradient-to-r ${gradient} rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    {step}
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-foundit-dark">Report Item</h3>
-                <p className="text-gray-600">
-                  Report your lost item or something you found with detailed information and photos for better visibility
-                </p>
-              </div>
-            </div>
-
-            {/* Step 2 */}
-            <div className="group relative bg-white rounded-2xl p-8 shadow-card hover:shadow-card-hover transition-all duration-300 animate-fade" style={{ animationDelay: '0.2s' }}>
-              <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-                <div className="w-12 h-12 bg-gradient-main rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  2
-                </div>
-              </div>
-              <div className="text-center pt-8">
-                <div className="mb-6 inline-block">
-                  <div className="w-16 h-16 rounded-xl bg-foundit-secondary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <MessageSquare className="w-8 h-8 text-foundit-secondary" />
+                
+                <div className="text-center pt-8">
+                  <div className="mb-6 inline-block">
+                    <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                      {icon}
+                    </div>
                   </div>
+                  <h3 className="text-xl font-semibold mb-4 text-foundit-dark group-hover:text-foundit-primary transition-colors">
+                    {title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-foundit-dark">Connect Directly</h3>
-                <p className="text-gray-600">
-                  Connect instantly via WhatsApp when you find a match - no intermediaries or complicated processes
-                </p>
+                
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r ${gradient} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-b-xl"></div>
               </div>
-            </div>
-
-            {/* Step 3 */}
-            <div className="group relative bg-white rounded-2xl p-8 shadow-card hover:shadow-card-hover transition-all duration-300 animate-fade" style={{ animationDelay: '0.3s' }}>
-              <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-                <div className="w-12 h-12 bg-gradient-main rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  3
-                </div>
-              </div>
-              <div className="text-center pt-8">
-                <div className="mb-6 inline-block">
-                  <div className="w-16 h-16 rounded-xl bg-foundit-accent/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Handshake className="w-8 h-8 text-foundit-accent" />
-                  </div>
-                </div>
-                <h3 className="text-xl font-semibold mb-4 text-foundit-dark">Safe Return</h3>
-                <p className="text-gray-600">
-                  Meet safely to retrieve your item and mark the report as resolved, helping build trust in our community
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
