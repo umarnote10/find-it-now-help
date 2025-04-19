@@ -5,20 +5,16 @@ import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { MOCK_ITEMS_PAKISTAN } from "@/data/mockItems";
 import ItemCard from "@/components/items/ItemCard";
-
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [featuredItems, setFeaturedItems] = useState(MOCK_ITEMS_PAKISTAN.slice(0, 4));
-  
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       window.location.href = `/search?q=${encodeURIComponent(searchQuery)}`;
     }
   };
-  
-  return (
-    <div className="flex flex-col">
+  return <div className="flex flex-col">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-foundit-primary/5 via-foundit-secondary/5 to-white pt-12 pb-20 sm:pt-20 sm:pb-24">
         <div className="foundit-container">
@@ -59,13 +55,7 @@ const Index = () => {
                 <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
                   <Search className="h-5 w-5 text-gray-400" />
                 </div>
-                <input
-                  type="text"
-                  placeholder="Search for lost or found items in Pakistan..."
-                  className="input-field pl-12"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
+                <input type="text" placeholder="Search for lost or found items in Pakistan..." className="input-field pl-12" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} />
                 <Button type="submit" className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-main hover:opacity-90 h-10">
                   Search
                 </Button>
@@ -74,7 +64,9 @@ const Index = () => {
             
             <div className="hidden lg:block">
               <div className="relative">
-                <div className="glass-card p-6 z-30 absolute top-14 left-10 w-72 animate-fade" style={{ animationDelay: '0.2s' }}>
+                <div className="glass-card p-6 z-30 absolute top-14 left-10 w-72 animate-fade" style={{
+                animationDelay: '0.2s'
+              }}>
                   <div className="flex items-start gap-4">
                     <div className="bg-gradient-main rounded-full p-3">
                       <MapPin className="h-6 w-6 text-white" />
@@ -89,7 +81,9 @@ const Index = () => {
                   </div>
                 </div>
                 
-                <div className="glass-card p-6 z-20 absolute -top-5 right-0 w-72 animate-fade" style={{ animationDelay: '0.4s' }}>
+                <div className="glass-card p-6 z-20 absolute -top-5 right-0 w-72 animate-fade" style={{
+                animationDelay: '0.4s'
+              }}>
                   <div className="flex items-start gap-4">
                     <div className="bg-green-500 rounded-full p-3">
                       <Hand className="h-6 w-6 text-white" />
@@ -104,7 +98,9 @@ const Index = () => {
                   </div>
                 </div>
                 
-                <div className="glass-card p-4 absolute bottom-20 left-5 z-30 animate-fade" style={{ animationDelay: '0.6s' }}>
+                <div className="glass-card p-4 absolute bottom-20 left-5 z-30 animate-fade" style={{
+                animationDelay: '0.6s'
+              }}>
                   <div className="flex items-center gap-3">
                     <div className="bg-[#25D366] rounded-full p-2.5">
                       <MessageSquare className="h-5 w-5 text-white" />
@@ -115,12 +111,10 @@ const Index = () => {
                   </div>
                 </div>
                 
-                <div className="bg-white rounded-xl shadow-xl p-5 relative z-10 animate-fade" style={{ animationDelay: '0s' }}>
-                  <img 
-                    src="https://images.pexels.com/photos/2007647/pexels-photo-2007647.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                    alt="Pakistan Map" 
-                    className="rounded-lg w-full h-80 object-cover"
-                  />
+                <div style={{
+                animationDelay: '0s'
+              }} className="bg-white rounded-xl shadow-xl p-5 relative z-10 animate-fade mx-0 my-[47px]">
+                  <img src="https://images.pexels.com/photos/2007647/pexels-photo-2007647.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Pakistan Map" className="rounded-lg w-full h-80 object-cover" />
                   <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                     <div className="relative">
                       <div className="w-16 h-16 bg-foundit-accent/30 rounded-full animate-ping absolute"></div>
@@ -163,9 +157,7 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 sm:px-0">
-            {featuredItems.map(item => (
-              <ItemCard key={item.id} item={item} />
-            ))}
+            {featuredItems.map(item => <ItemCard key={item.id} item={item} />)}
           </div>
           
           <div className="text-center mt-12">
@@ -299,11 +291,7 @@ const Index = () => {
               <CardContent className="pt-6">
                 <div className="flex items-center mb-4">
                   <div className="mr-4">
-                    <img 
-                      src="https://i.pravatar.cc/150?img=32" 
-                      alt="User" 
-                      className="h-12 w-12 rounded-full object-cover border-2 border-white shadow-sm"
-                    />
+                    <img src="https://i.pravatar.cc/150?img=32" alt="User" className="h-12 w-12 rounded-full object-cover border-2 border-white shadow-sm" />
                   </div>
                   <div>
                     <h4 className="font-medium">Aisha Mahmood</h4>
@@ -327,11 +315,7 @@ const Index = () => {
               <CardContent className="pt-6">
                 <div className="flex items-center mb-4">
                   <div className="mr-4">
-                    <img 
-                      src="https://i.pravatar.cc/150?img=15" 
-                      alt="User" 
-                      className="h-12 w-12 rounded-full object-cover border-2 border-white shadow-sm"
-                    />
+                    <img src="https://i.pravatar.cc/150?img=15" alt="User" className="h-12 w-12 rounded-full object-cover border-2 border-white shadow-sm" />
                   </div>
                   <div>
                     <h4 className="font-medium">Faisal Ahmed</h4>
@@ -355,11 +339,7 @@ const Index = () => {
               <CardContent className="pt-6">
                 <div className="flex items-center mb-4">
                   <div className="mr-4">
-                    <img 
-                      src="https://i.pravatar.cc/150?img=23" 
-                      alt="User" 
-                      className="h-12 w-12 rounded-full object-cover border-2 border-white shadow-sm"
-                    />
+                    <img src="https://i.pravatar.cc/150?img=23" alt="User" className="h-12 w-12 rounded-full object-cover border-2 border-white shadow-sm" />
                   </div>
                   <div>
                     <h4 className="font-medium">Saima Khan</h4>
@@ -423,8 +403,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
