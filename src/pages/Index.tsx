@@ -241,38 +241,45 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Success Stories - New Design */}
-      <section className="py-20 bg-gradient-to-br from-white to-[#F8F9FF]">
+      {/* Success Stories - New Professional Design */}
+      <section className="py-24 bg-gradient-to-br from-[#F8F9FF] to-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-[#7C3AED]/[0.03] -z-1"></div>
         <div className="foundit-container">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Success Stories</h2>
-            <div className="w-24 h-1 bg-[#7C3AED] mx-auto mb-4"></div>
-            <p className="text-lg text-gray-600">Hear from people who recovered their lost items</p>
+          <div className="flex flex-col items-center text-center mb-16">
+            <span className="text-[#7C3AED] font-medium text-sm tracking-wider uppercase mb-4">Success Stories</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Hamari Kamyabi Ki Kahaniyan
+            </h2>
+            <div className="w-24 h-1 bg-[#7C3AED] mx-auto mb-6"></div>
+            <p className="text-lg text-gray-600 max-w-2xl">
+              Found It ke zariye hazaron Pakistaniyon ne apni khoyi hui cheezein wapas hasil ki hain. 
+              Dekhiye kuch khush logo ki kahaniyan.
+            </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <TestimonialCard
-              name="Muhammad Ahsan"
-              city="Lahore"
-              image="https://i.pravatar.cc/150?img=32"
-              text="Alhamdulillah! Mera khooya hua wallet 24 ghante ke andar mil gaya. Found It ke through ek imaandaar insaan ne mujhe WhatsApp pe contact kiya aur wallet safely wapas kar diya."
-              rating={5}
-            />
-            
-            <TestimonialCard
-              name="Fatima Zahra"
+              name="Muhammad Kashif"
               city="Islamabad"
-              image="https://i.pravatar.cc/150?img=23"
-              text="Metro station mein mera laptop bag gir gaya tha. Found It pe post karne ke 2 ghante ke andar hi ek security guard ne mujhe contact kiya. Bohat shukriya Found It team ka!"
+              image="https://i.pravatar.cc/150?img=32"
+              text="Subhan Allah! Metro station mein mera wallet gir gaya tha. Found It pe post karne ke sirf 3 ghante baad hi ek naik shakhs ne mujhe contact kiya aur wallet wapas kar diya."
               layout="quote"
             />
             
             <TestimonialCard
-              name="Abdul Rahman"
+              name="Ayesha Imran"
+              city="Lahore"
+              image="https://i.pravatar.cc/150?img=23"
+              text="Main apna iPhone Packages Mall mein bhool gayi thi. Found It ki wajah se mujhe foran security se rabta ho gaya aur phone mil gaya. Allah ka shukar hai!"
+              rating={5}
+            />
+            
+            <TestimonialCard
+              name="Abdul Rehman"
               city="Karachi"
               image="https://i.pravatar.cc/150?img=15"
-              text="Meri beti ka school bag kisi park mein reh gaya tha. Found It ki madad se usi din bag mil gaya. Ye platform sachme ek nemat hai Pakistani awam ke liye."
-              rating={5}
+              text="Meri behn ki engagement ring kho gayi thi. Found It pe post karne ke baad ek uncle ne contact kiya jo ring mil gayi thi. Bohat shukriya Found It team ka!"
+              layout="quote"
             />
           </div>
         </div>
