@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { MOCK_ITEMS_PAKISTAN } from "@/data/mockItems";
 import ItemCard from "@/components/items/ItemCard";
+import SuccessStories from "@/components/sections/SuccessStories";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -355,104 +356,7 @@ const Index = () => {
       
       {/* Testimonials */}
       <section className="py-16 bg-gray-50">
-        <div className="foundit-container">
-          <div className="text-center mb-12">
-            <h2 className="section-title">Success Stories</h2>
-            <p className="section-subtitle">Hear from people who recovered their lost items</p>
-          </div>
-
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {/* Card 1 */}
-            <div className="relative group rounded-2xl bg-white border-2 border-foundit-primary shadow-xl overflow-hidden transition-all hover:shadow-2xl p-8 flex flex-col items-center text-center">
-              <div className="absolute -top-8 w-full flex justify-center">
-                <div className="rounded-full border-4 border-white shadow-lg" style={{ background: 'linear-gradient(135deg, #2140B2 0%, #4C45E0 100%)' }}>
-                  <img src="https://i.pravatar.cc/150?img=32" alt="User" className="h-20 w-20 rounded-full object-cover" />
-                </div>
-              </div>
-              <div className="mt-12">
-                <h4 className="font-semibold text-lg text-foundit-primary mb-0.5">Aisha Mahmood</h4>
-                <span className="text-sm text-gray-500 mb-4 block">Lahore</span>
-              </div>
-              <blockquote className="text-gray-900 text-lg italic mt-2 mb-6 relative px-2">
-                <span className="text-4xl leading-none text-foundit-primary mr-1">“</span>
-                I lost my wallet at a restaurant in Lahore. Within 24 hours of posting on Found It, I got a WhatsApp message and recovered it with all my documents intact!
-              </blockquote>
-              <div className="flex items-center justify-center gap-1 mb-1">
-                <svg width="24" height="24" fill="#F59E0B" className="inline"><use href="#star" /></svg>
-                <svg width="24" height="24" fill="#F59E0B" className="inline"><use href="#star" /></svg>
-                <svg width="24" height="24" fill="#F59E0B" className="inline"><use href="#star" /></svg>
-                <svg width="24" height="24" fill="#F59E0B" className="inline"><use href="#star" /></svg>
-                <svg width="24" height="24" fill="#F59E0B" className="inline"><use href="#star" /></svg>
-              </div>
-              <div className="flex items-center justify-center gap-1 mt-2">
-                <svg width="18" height="18" stroke="#4C45E0" fill="none" strokeWidth="2"><circle cx="9" cy="9" r="8"/><path d="M6.5 9.5l2 2l4-4" stroke="#1E40AF"/></svg>
-                <span className="text-xs text-gray-500 ml-1">Verified recovery</span>
-              </div>
-            </div>
-
-            {/* Card 2 */}
-            <div className="relative group rounded-2xl bg-white border-2 border-foundit-primary shadow-xl overflow-hidden transition-all hover:shadow-2xl p-8 flex flex-col items-center text-center">
-              <div className="absolute -top-8 w-full flex justify-center">
-                <div className="rounded-full border-4 border-white shadow-lg" style={{ background: 'linear-gradient(135deg, #2140B2 0%, #4C45E0 100%)' }}>
-                  <img src="https://i.pravatar.cc/150?img=15" alt="User" className="h-20 w-20 rounded-full object-cover" />
-                </div>
-              </div>
-              <div className="mt-12">
-                <h4 className="font-semibold text-lg text-foundit-primary mb-0.5">Faisal Ahmed</h4>
-                <span className="text-sm text-gray-500 mb-4 block">Islamabad</span>
-              </div>
-              <blockquote className="text-gray-900 text-lg italic mt-2 mb-6 relative px-2">
-                <span className="text-4xl leading-none text-foundit-primary mr-1">“</span>
-                Found a child's backpack at a park in Islamabad. Posted it on Found It and was able to return it to the relieved parents the same day. This platform is a blessing!
-              </blockquote>
-              <div className="flex items-center justify-center gap-1 mb-1">
-                <svg width="24" height="24" fill="#F59E0B" className="inline"><use href="#star" /></svg>
-                <svg width="24" height="24" fill="#F59E0B" className="inline"><use href="#star" /></svg>
-                <svg width="24" height="24" fill="#F59E0B" className="inline"><use href="#star" /></svg>
-                <svg width="24" height="24" fill="#F59E0B" className="inline"><use href="#star" /></svg>
-                <svg width="24" height="24" fill="#F59E0B" className="inline"><use href="#star" /></svg>
-              </div>
-              <div className="flex items-center justify-center gap-1 mt-2">
-                <svg width="18" height="18" stroke="#4C45E0" fill="none" strokeWidth="2"><circle cx="9" cy="9" r="8"/><path d="M6.5 9.5l2 2l4-4" stroke="#1E40AF"/></svg>
-                <span className="text-xs text-gray-500 ml-1">Verified recovery</span>
-              </div>
-            </div>
-
-            {/* Card 3 */}
-            <div className="relative group rounded-2xl bg-white border-2 border-foundit-primary shadow-xl overflow-hidden transition-all hover:shadow-2xl p-8 flex flex-col items-center text-center">
-              <div className="absolute -top-8 w-full flex justify-center">
-                <div className="rounded-full border-4 border-white shadow-lg" style={{ background: 'linear-gradient(135deg, #2140B2 0%, #4C45E0 100%)' }}>
-                  <img src="https://i.pravatar.cc/150?img=23" alt="User" className="h-20 w-20 rounded-full object-cover" />
-                </div>
-              </div>
-              <div className="mt-12">
-                <h4 className="font-semibold text-lg text-foundit-primary mb-0.5">Saima Khan</h4>
-                <span className="text-sm text-gray-500 mb-4 block">Karachi</span>
-              </div>
-              <blockquote className="text-gray-900 text-lg italic mt-2 mb-6 relative px-2">
-                <span className="text-4xl leading-none text-foundit-primary mr-1">“</span>
-                I lost my family heirloom ring at a wedding in Karachi. Thanks to Found It, an honest person found it and contacted me directly. I'm forever grateful!
-              </blockquote>
-              <div className="flex items-center justify-center gap-1 mb-1">
-                <svg width="24" height="24" fill="#F59E0B" className="inline"><use href="#star" /></svg>
-                <svg width="24" height="24" fill="#F59E0B" className="inline"><use href="#star" /></svg>
-                <svg width="24" height="24" fill="#F59E0B" className="inline"><use href="#star" /></svg>
-                <svg width="24" height="24" fill="#F59E0B" className="inline"><use href="#star" /></svg>
-                <svg width="24" height="24" fill="#F59E0B" className="inline"><use href="#star" /></svg>
-              </div>
-              <div className="flex items-center justify-center gap-1 mt-2">
-                <svg width="18" height="18" stroke="#4C45E0" fill="none" strokeWidth="2"><circle cx="9" cy="9" r="8"/><path d="M6.5 9.5l2 2l4-4" stroke="#1E40AF"/></svg>
-                <span className="text-xs text-gray-500 ml-1">Verified recovery</span>
-              </div>
-            </div>
-          </div>
-          {/* SVG sprite for stars */}
-          <svg style={{ display: 'none' }}>
-            <symbol id="star" viewBox="0 0 24 24">
-              <polygon points="12,3.1 15.09,8.26 21,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 3,9.27 8.91,8.26 " />
-            </symbol>
-          </svg>
-        </div>
+        <SuccessStories />
       </section>
       
       {/* CTA */}
