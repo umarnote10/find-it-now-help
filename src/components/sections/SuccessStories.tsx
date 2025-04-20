@@ -109,3 +109,6 @@ export const SuccessStories: FC = () => (
       ))}
     </div>
   </div>
+);
+
+export default SuccessStories;
