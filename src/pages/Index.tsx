@@ -271,56 +271,81 @@ const Index = () => {
       {/* Features */}
       <section className="py-16 bg-white">
         <div className="foundit-container">
-          <div className="text-center mb-12">
+          <div className="text-center mb-16">
             <h2 className="section-title">Why Choose Found It</h2>
             <p className="section-subtitle">The best way to recover lost items across Pakistan</p>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white p-6 rounded-xl shadow-card hover:shadow-card-hover transition-all duration-300 border border-gray-100">
-              <div className="feature-icon">
-                <MessageSquare className="h-6 w-6" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-4 sm:px-6">
+            {[
+              {
+                icon: <MessageSquare className="h-6 w-6" />,
+                title: "Direct Communication",
+                description: "Connect directly via WhatsApp without any intermediary.",
+                gradient: "from-[#2140B2] to-[#4C45E0]",
+                delay: "0.1s"
+              },
+              {
+                icon: <ShieldCheck className="h-6 w-6" />,
+                title: "Secure Platform",
+                description: "Your data is protected and your privacy is our priority.",
+                gradient: "from-[#2140B2] to-[#4C45E0]",
+                delay: "0.2s"
+              },
+              {
+                icon: <Search className="h-6 w-6" />,
+                title: "Smart Search",
+                description: "Quickly find matching items with our filtering system.",
+                gradient: "from-[#2140B2] to-[#4C45E0]",
+                delay: "0.3s"
+              },
+              {
+                icon: <Award className="h-6 w-6" />,
+                title: "Always Free",
+                description: "Our service is completely free with no hidden charges.",
+                gradient: "from-[#2140B2] to-[#4C45E0]",
+                delay: "0.4s"
+              }
+            ].map(({ icon, title, description, gradient, delay }) => (
+              <div
+                key={title}
+                className="group relative bg-white rounded-xl p-8 border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 animate-fade"
+                style={{ animationDelay: delay }}
+              >
+                <div className="relative z-10">
+                  <div className={`
+                    w-14 h-14 mb-6 rounded-lg bg-gradient-to-r ${gradient}
+                    flex items-center justify-center text-white
+                    group-hover:scale-110 transition-transform duration-300
+                    shadow-lg
+                  `}>
+                    {icon}
+                  </div>
+                  
+                  <h3 className="text-xl font-semibold mb-3 text-foundit-dark group-hover:text-[#2140B2] transition-colors">
+                    {title}
+                  </h3>
+                  
+                  <p className="text-gray-600 leading-relaxed">
+                    {description}
+                  </p>
+                </div>
+
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#2140B2] to-[#4C45E0] opacity-0 group-hover:opacity-5 transition-opacity duration-300" />
+                
+                <div className={`
+                  absolute bottom-0 left-0 w-full h-1
+                  bg-gradient-to-r ${gradient}
+                  transform scale-x-0 group-hover:scale-x-100
+                  transition-transform duration-300 rounded-b-xl
+                `} />
               </div>
-              <h3 className="font-semibold mb-2 text-lg">Direct Communication</h3>
-              <p className="text-sm text-gray-600">
-                Connect directly via WhatsApp without any intermediary.
-              </p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-xl shadow-card hover:shadow-card-hover transition-all duration-300 border border-gray-100">
-              <div className="feature-icon">
-                <ShieldCheck className="h-6 w-6" />
-              </div>
-              <h3 className="font-semibold mb-2 text-lg">Secure Platform</h3>
-              <p className="text-sm text-gray-600">
-                Your data is protected and your privacy is our priority.
-              </p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-xl shadow-card hover:shadow-card-hover transition-all duration-300 border border-gray-100">
-              <div className="feature-icon">
-                <Search className="h-6 w-6" />
-              </div>
-              <h3 className="font-semibold mb-2 text-lg">Smart Search</h3>
-              <p className="text-sm text-gray-600">
-                Quickly find matching items with our filtering system.
-              </p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-xl shadow-card hover:shadow-card-hover transition-all duration-300 border border-gray-100">
-              <div className="feature-icon">
-                <Award className="h-6 w-6" />
-              </div>
-              <h3 className="font-semibold mb-2 text-lg">Always Free</h3>
-              <p className="text-sm text-gray-600">
-                Our service is completely free with no hidden charges.
-              </p>
-            </div>
+            ))}
           </div>
           
-          <div className="text-center mt-10">
+          <div className="text-center mt-12">
             <Link to="/about">
-              <Button variant="link" className="text-foundit-secondary hover:text-foundit-primary">
+              <Button variant="link" className="text-[#2140B2] hover:text-[#4C45E0]">
                 Learn More About Us <ArrowRight className="ml-1 h-4 w-4" />
               </Button>
             </Link>
