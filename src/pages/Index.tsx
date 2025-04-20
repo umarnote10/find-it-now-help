@@ -6,18 +6,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { MOCK_ITEMS_PAKISTAN } from "@/data/mockItems";
 import ItemCard from "@/components/items/ItemCard";
 import SuccessStories from "@/components/sections/SuccessStories";
-
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [featuredItems, setFeaturedItems] = useState(MOCK_ITEMS_PAKISTAN.slice(0, 4));
-
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       window.location.href = `/search?q=${encodeURIComponent(searchQuery)}`;
     }
   };
-
   return <div className="flex flex-col">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-foundit-primary/5 via-foundit-secondary/5 to-white pt-12 pb-20 sm:pt-20 sm:pb-24">
@@ -193,41 +190,41 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
             <div className="hidden md:block absolute top-32 left-0 w-full h-1 bg-gradient-to-r from-foundit-primary via-foundit-secondary to-foundit-accent opacity-20 -z-10"></div>
             
-            {[
-              {
-                step: 1,
-                icon: <MapPin className="w-8 h-8 text-white" />,
-                title: "Report Item",
-                description: "Report your lost item or something you found with detailed information and photos for better visibility",
-                gradient: "from-[#2140B2] to-[#4C45E0]",
-                delay: "0.1s"
-              },
-              {
-                step: 2,
-                icon: <MessageSquare className="w-8 h-8 text-white" />,
-                title: "Connect Directly",
-                description: "Connect instantly via WhatsApp when you find a match - no intermediaries or complicated processes",
-                gradient: "from-[#2140B2] to-[#4C45E0]",
-                delay: "0.2s"
-              },
-              {
-                step: 3,
-                icon: <Handshake className="w-8 h-8 text-white" />,
-                title: "Safe Return",
-                description: "Meet safely to retrieve your item and mark the report as resolved, helping build trust in our community",
-                gradient: "from-[#2140B2] to-[#4C45E0]",
-                delay: "0.3s"
-              }
-            ].map(({ step, icon, title, description, gradient, delay }) => (
-              <div
-                key={step}
-                className={`
+            {[{
+            step: 1,
+            icon: <MapPin className="w-8 h-8 text-white" />,
+            title: "Report Item",
+            description: "Report your lost item or something you found with detailed information and photos for better visibility",
+            gradient: "from-[#2140B2] to-[#4C45E0]",
+            delay: "0.1s"
+          }, {
+            step: 2,
+            icon: <MessageSquare className="w-8 h-8 text-white" />,
+            title: "Connect Directly",
+            description: "Connect instantly via WhatsApp when you find a match - no intermediaries or complicated processes",
+            gradient: "from-[#2140B2] to-[#4C45E0]",
+            delay: "0.2s"
+          }, {
+            step: 3,
+            icon: <Handshake className="w-8 h-8 text-white" />,
+            title: "Safe Return",
+            description: "Meet safely to retrieve your item and mark the report as resolved, helping build trust in our community",
+            gradient: "from-[#2140B2] to-[#4C45E0]",
+            delay: "0.3s"
+          }].map(({
+            step,
+            icon,
+            title,
+            description,
+            gradient,
+            delay
+          }) => <div key={step} className={`
       group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl 
       transition-all duration-300 border border-gray-200 
       backdrop-blur-sm animate-fade
-    `}
-                style={{ animationDelay: delay }}
-              >
+    `} style={{
+            animationDelay: delay
+          }}>
                 <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
                   <div className={`
         w-12 h-12 bg-gradient-to-r ${gradient} 
@@ -263,8 +260,7 @@ const Index = () => {
       transform scale-x-0 group-hover:scale-x-100 
       transition-transform duration-300 rounded-b-xl
     `}></div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -278,41 +274,39 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-4 sm:px-6">
-            {[
-              {
-                icon: <MessageSquare className="h-6 w-6" />,
-                title: "Direct Communication",
-                description: "Connect directly via WhatsApp without any intermediary.",
-                gradient: "from-[#2140B2] to-[#4C45E0]",
-                delay: "0.1s"
-              },
-              {
-                icon: <ShieldCheck className="h-6 w-6" />,
-                title: "Secure Platform",
-                description: "Your data is protected and your privacy is our priority.",
-                gradient: "from-[#2140B2] to-[#4C45E0]",
-                delay: "0.2s"
-              },
-              {
-                icon: <Search className="h-6 w-6" />,
-                title: "Smart Search",
-                description: "Quickly find matching items with our filtering system.",
-                gradient: "from-[#2140B2] to-[#4C45E0]",
-                delay: "0.3s"
-              },
-              {
-                icon: <Award className="h-6 w-6" />,
-                title: "Always Free",
-                description: "Our service is completely free with no hidden charges.",
-                gradient: "from-[#2140B2] to-[#4C45E0]",
-                delay: "0.4s"
-              }
-            ].map(({ icon, title, description, gradient, delay }) => (
-              <div
-                key={title}
-                className="group relative bg-white rounded-xl p-8 border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 animate-fade"
-                style={{ animationDelay: delay }}
-              >
+            {[{
+            icon: <MessageSquare className="h-6 w-6" />,
+            title: "Direct Communication",
+            description: "Connect directly via WhatsApp without any intermediary.",
+            gradient: "from-[#2140B2] to-[#4C45E0]",
+            delay: "0.1s"
+          }, {
+            icon: <ShieldCheck className="h-6 w-6" />,
+            title: "Secure Platform",
+            description: "Your data is protected and your privacy is our priority.",
+            gradient: "from-[#2140B2] to-[#4C45E0]",
+            delay: "0.2s"
+          }, {
+            icon: <Search className="h-6 w-6" />,
+            title: "Smart Search",
+            description: "Quickly find matching items with our filtering system.",
+            gradient: "from-[#2140B2] to-[#4C45E0]",
+            delay: "0.3s"
+          }, {
+            icon: <Award className="h-6 w-6" />,
+            title: "Always Free",
+            description: "Our service is completely free with no hidden charges.",
+            gradient: "from-[#2140B2] to-[#4C45E0]",
+            delay: "0.4s"
+          }].map(({
+            icon,
+            title,
+            description,
+            gradient,
+            delay
+          }) => <div key={title} className="group relative bg-white rounded-xl p-8 border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 animate-fade" style={{
+            animationDelay: delay
+          }}>
                 <div className="relative z-10">
                   <div className={`
                     w-14 h-14 mb-6 rounded-lg bg-gradient-to-r ${gradient}
@@ -340,8 +334,7 @@ const Index = () => {
                   transform scale-x-0 group-hover:scale-x-100
                   transition-transform duration-300 rounded-b-xl
                 `} />
-              </div>
-            ))}
+              </div>)}
           </div>
           
           <div className="text-center mt-12">
@@ -377,7 +370,7 @@ const Index = () => {
               </Button>
             </Link>
             <Link to="/post/found">
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-foundit-primary">
+              <Button variant="outline" size="lg" className="border-white hover:bg-white text-blue-600">
                 <Hand className="mr-2 h-5 w-5" />
                 Report Found Item
               </Button>
@@ -402,5 +395,4 @@ const Index = () => {
       </section>
     </div>;
 };
-
 export default Index;
