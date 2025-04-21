@@ -21,28 +21,42 @@ export const pakistaniUserNames = [
 export const mockImages = {
   wallets: [
     "https://images.pexels.com/photos/669996/pexels-photo-669996.jpeg?auto=compress&cs=tinysrgb&w=800",
-    "https://images.pexels.com/photos/4386431/pexels-photo-4386431.jpeg?auto=compress&cs=tinysrgb&w=800"
+    "https://images.pexels.com/photos/4386431/pexels-photo-4386431.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "https://images.pexels.com/photos/2252310/pexels-photo-2252310.jpeg?auto=compress&cs=tinysrgb&w=800"
   ],
   phones: [
     "https://images.pexels.com/photos/1092644/pexels-photo-1092644.jpeg?auto=compress&cs=tinysrgb&w=800",
     "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=800",
-    "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=800"
+    "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg?auto=compress&cs=tinysrgb&w=800"
   ],
   keys: [
     "https://images.pexels.com/photos/1454172/pexels-photo-1454172.jpeg?auto=compress&cs=tinysrgb&w=800",
-    "https://images.pexels.com/photos/5613456/pexels-photo-5613456.jpeg?auto=compress&cs=tinysrgb&w=800"
+    "https://images.pexels.com/photos/5613456/pexels-photo-5613456.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "https://images.pexels.com/photos/5240543/pexels-photo-5240543.jpeg?auto=compress&cs=tinysrgb&w=800"
   ],
   bags: [
     "https://images.pexels.com/photos/1002638/pexels-photo-1002638.jpeg?auto=compress&cs=tinysrgb&w=800",
-    "https://images.pexels.com/photos/2081199/pexels-photo-2081199.jpeg?auto=compress&cs=tinysrgb&w=800"
+    "https://images.pexels.com/photos/2081199/pexels-photo-2081199.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "https://images.pexels.com/photos/934673/pexels-photo-934673.jpeg?auto=compress&cs=tinysrgb&w=800"
   ],
   jewelry: [
     "https://images.pexels.com/photos/10894/pexels-photo-10894.jpeg?auto=compress&cs=tinysrgb&w=800",
-    "https://images.pexels.com/photos/9428308/pexels-photo-9428308.jpeg?auto=compress&cs=tinysrgb&w=800"
+    "https://images.pexels.com/photos/9428308/pexels-photo-9428308.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "https://images.pexels.com/photos/177332/pexels-photo-177332.jpeg?auto=compress&cs=tinysrgb&w=800"
   ],
   pets: [
     "https://images.pexels.com/photos/58997/pexels-photo-58997.jpeg?auto=compress&cs=tinysrgb&w=800",
-    "https://images.pexels.com/photos/1741205/pexels-photo-1741205.jpeg?auto=compress&cs=tinysrgb&w=800"
+    "https://images.pexels.com/photos/1741205/pexels-photo-1741205.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "https://images.pexels.com/photos/979247/pexels-photo-979247.jpeg?auto=compress&cs=tinysrgb&w=800"
+  ],
+  documents: [
+    "https://images.pexels.com/photos/8539674/pexels-photo-8539674.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "https://images.pexels.com/photos/5876695/pexels-photo-5876695.jpeg?auto=compress&cs=tinysrgb&w=800"
+  ],
+  laptops: [
+    "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=800",
+    "https://images.pexels.com/photos/303383/pexels-photo-303383.jpeg?auto=compress&cs=tinysrgb&w=800"
   ]
 };
 
@@ -75,7 +89,7 @@ export const MOCK_ITEMS_PAKISTAN: ItemType[] = [
     longitude: 74.3434,
     whatsapp_number: "+923214567890",
     reward_note: "Rs. 10,000 inaam, koi sawal nahi pucha jaye ga",
-    images: [mockImages.phones[0], mockImages.phones[1]],
+    images: [mockImages.phones[0]],
     created_at: new Date(Date.now() - 86400000 * 0.5).toISOString(),
     user_id: "user2",
     user_name: "Fatima Khan",
@@ -229,5 +243,266 @@ export const MOCK_ITEMS_PAKISTAN: ItemType[] = [
     user_id: "user12",
     user_name: "Nadia Hussain",
     user_profile_image: "https://i.pravatar.cc/150?img=24"
+  },
+  {
+    id: "13",
+    title: "Lost MacBook Pro at Millennium Mall",
+    description: "Lost my MacBook Pro (16-inch, Space Gray) at Millennium Mall food court. Has a blue case with stickers. University project files are urgent.",
+    status: "lost",
+    location: "Millennium Mall",
+    city: "Karachi",
+    whatsapp_number: "+923331234567",
+    reward_note: "Rs. 20,000 reward offered",
+    images: [mockImages.laptops[0]],
+    created_at: new Date(Date.now() - 86400000 * 0.3).toISOString(),
+    user_id: "user13",
+    user_name: "Kamran Akmal",
+    user_profile_image: "https://i.pravatar.cc/150?img=61"
+  },
+  {
+    id: "14",
+    title: "Found: CNIC at Giga Mall",
+    description: "Giga Mall ke parking area se aik CNIC mili hai. Owner ka naam verify kar ke collect kar sakte hain.",
+    status: "found",
+    location: "Giga Mall",
+    city: "Islamabad",
+    whatsapp_number: "+923339876543",
+    images: [mockImages.documents[0]],
+    created_at: new Date(Date.now() - 86400000 * 1.5).toISOString(),
+    user_id: "user14",
+    user_name: "Saima Rashid",
+    user_profile_image: "https://i.pravatar.cc/150?img=45"
+  },
+  {
+    id: "15",
+    title: "Lost: Designer Handbag at Ocean Mall",
+    description: "Lost my brown leather designer handbag at Ocean Mall. Contains important documents and personal items.",
+    status: "lost",
+    location: "Ocean Mall",
+    city: "Karachi",
+    whatsapp_number: "+923159876543",
+    reward_note: "Rs. 15,000 reward",
+    images: [mockImages.bags[1]],
+    created_at: new Date(Date.now() - 86400000 * 0.8).toISOString(),
+    user_id: "user15",
+    user_name: "Mehwish Khan",
+    user_profile_image: "https://i.pravatar.cc/150?img=48"
+  },
+  {
+    id: "16",
+    title: "Found Persian Cat in DHA Phase 5",
+    description: "DHA Phase 5 se aik Persian cat mili hai. White color ki hai aur red collar pehna hua hai.",
+    status: "found",
+    location: "DHA Phase 5",
+    city: "Lahore",
+    whatsapp_number: "+923001234567",
+    images: [mockImages.pets[0]],
+    created_at: new Date(Date.now() - 86400000 * 1.2).toISOString(),
+    user_id: "user16",
+    user_name: "Ali Raza",
+    user_profile_image: "https://i.pravatar.cc/150?img=52"
+  },
+  {
+    id: "17",
+    title: "Lost: Gold Bracelet at Arena Mall",
+    description: "Gold bracelet kho gayi hai Arena Mall mein shopping ke doran. Bohat emotional value hai, please contact karen agar mile.",
+    status: "lost",
+    location: "Arena Mall",
+    city: "Rawalpindi",
+    whatsapp_number: "+923339876543",
+    reward_note: "Rs. 10,000 reward",
+    images: [mockImages.jewelry[1]],
+    created_at: new Date(Date.now() - 86400000 * 0.4).toISOString(),
+    user_id: "user17",
+    user_name: "Amna Malik",
+    user_profile_image: "https://i.pravatar.cc/150?img=41"
+  },
+  {
+    id: "18",
+    title: "Found Keys at Shalimar Gardens",
+    description: "Found a bunch of keys with Honda car key at Shalimar Gardens. Black keychain attached.",
+    status: "found",
+    location: "Shalimar Gardens",
+    city: "Lahore",
+    whatsapp_number: "+923214567890",
+    images: [mockImages.keys[1]],
+    created_at: new Date(Date.now() - 86400000 * 2.5).toISOString(),
+    user_id: "user18",
+    user_name: "Hassan Khan",
+    user_profile_image: "https://i.pravatar.cc/150?img=53"
+  },
+  {
+    id: "19",
+    title: "Lost Samsung S23 Ultra at Anchorage Mall",
+    description: "Samsung S23 Ultra black color ka phone kho gaya hai Anchorage Mall ke food court se. Green case laga hua hai.",
+    status: "lost",
+    location: "Anchorage Mall",
+    city: "Islamabad",
+    whatsapp_number: "+923331234567",
+    reward_note: "Rs. 15,000 inaam",
+    images: [mockImages.phones[2]],
+    created_at: new Date(Date.now() - 86400000 * 0.6).toISOString(),
+    user_id: "user19",
+    user_name: "Usman Ali",
+    user_profile_image: "https://i.pravatar.cc/150?img=55"
+  },
+  {
+    id: "20",
+    title: "Found School Bag at Jinnah Park",
+    description: "Blue color ka school bag mila hai Jinnah Park mein. Beaconhouse ki books hain andar.",
+    status: "found",
+    location: "Jinnah Park",
+    city: "Rawalpindi",
+    whatsapp_number: "+923159876543",
+    images: [mockImages.bags[2]],
+    created_at: new Date(Date.now() - 86400000 * 1.8).toISOString(),
+    user_id: "user20",
+    user_name: "Saad Ahmed",
+    user_profile_image: "https://i.pravatar.cc/150?img=57"
+  },
+  {
+    id: "21",
+    title: "Lost Passport at Peshawar Airport",
+    description: "International flight ke check-in ke doran passport kho gaya hai. Dark blue color ka hai.",
+    status: "lost",
+    location: "Bacha Khan International Airport",
+    city: "Peshawar",
+    whatsapp_number: "+923214567890",
+    reward_note: "Rs. 8,000 reward",
+    images: [mockImages.documents[1]],
+    created_at: new Date(Date.now() - 86400000 * 0.2).toISOString(),
+    user_id: "user21",
+    user_name: "Zahid Khan",
+    user_profile_image: "https://i.pravatar.cc/150?img=59"
+  },
+  {
+    id: "22",
+    title: "Found: Apple AirPods at Lucky One Mall",
+    description: "AirPods Pro with charging case found at Lucky One Mall food court. Owner can verify serial number.",
+    status: "found",
+    location: "Lucky One Mall",
+    city: "Karachi",
+    whatsapp_number: "+923331234567",
+    images: [mockImages.phones[3]],
+    created_at: new Date(Date.now() - 86400000 * 1.1).toISOString(),
+    user_id: "user22",
+    user_name: "Asma Farooq",
+    user_profile_image: "https://i.pravatar.cc/150?img=44"
+  },
+  {
+    id: "23",
+    title: "Lost Golden Necklace at Fortress Stadium",
+    description: "Shopping ke doran golden necklace gir gayi hai. Heart pendant laga hua hai. Please contact if found.",
+    status: "lost",
+    location: "Fortress Stadium",
+    city: "Lahore",
+    whatsapp_number: "+923159876543",
+    reward_note: "Rs. 25,000 reward",
+    images: [mockImages.jewelry[2]],
+    created_at: new Date(Date.now() - 86400000 * 0.9).toISOString(),
+    user_id: "user23",
+    user_name: "Sadia Malik",
+    user_profile_image: "https://i.pravatar.cc/150?img=46"
+  },
+  {
+    id: "24",
+    title: "Found Dell Laptop at Bahria Town",
+    description: "Dell ka silver color laptop mila hai Bahria Town ke food street se. Charger bhi sath hai.",
+    status: "found",
+    location: "Bahria Town Food Street",
+    city: "Rawalpindi",
+    whatsapp_number: "+923214567890",
+    images: [mockImages.laptops[1]],
+    created_at: new Date(Date.now() - 86400000 * 2.2).toISOString(),
+    user_id: "user24",
+    user_name: "Rizwan Ahmed",
+    user_profile_image: "https://i.pravatar.cc/150?img=62"
+  },
+  {
+    id: "25",
+    title: "Lost Car Keys at Emporium Mall",
+    description: "Toyota Corolla ki chabian kho gayi hain Emporium Mall ke basement parking se. Red keychain laga hua hai.",
+    status: "lost",
+    location: "Emporium Mall",
+    city: "Lahore",
+    whatsapp_number: "+923331234567",
+    reward_note: "Rs. 5,000 inaam",
+    images: [mockImages.keys[2]],
+    created_at: new Date(Date.now() - 86400000 * 0.3).toISOString(),
+    user_id: "user25",
+    user_name: "Imran Khan",
+    user_profile_image: "https://i.pravatar.cc/150?img=63"
+  },
+  {
+    id: "26",
+    title: "Found Persian Cat in Phase 8",
+    description: "Found a white Persian cat with blue eyes in Phase 8. Wearing a blue collar with bell.",
+    status: "found",
+    location: "DHA Phase 8",
+    city: "Lahore",
+    whatsapp_number: "+923159876543",
+    images: [mockImages.pets[2]],
+    created_at: new Date(Date.now() - 86400000 * 1.5).toISOString(),
+    user_id: "user26",
+    user_name: "Zainab Ali",
+    user_profile_image: "https://i.pravatar.cc/150?img=47"
+  },
+  {
+    id: "27",
+    title: "Lost Wedding Ring at Port Grand",
+    description: "Wedding ring kho gayi hai Port Grand ke area mein. White gold ki hai with small diamonds.",
+    status: "lost",
+    location: "Port Grand",
+    city: "Karachi",
+    whatsapp_number: "+923214567890",
+    reward_note: "Rs. 30,000 reward",
+    images: [mockImages.jewelry[1]],
+    created_at: new Date(Date.now() - 86400000 * 0.7).toISOString(),
+    user_id: "user27",
+    user_name: "Nabeel Ahmed",
+    user_profile_image: "https://i.pravatar.cc/150?img=64"
+  },
+  {
+    id: "28",
+    title: "Found: Designer Wallet at Gaddafi Stadium",
+    description: "Found a brown leather designer wallet near Gaddafi Stadium entrance. Contains cards and cash.",
+    status: "found",
+    location: "Gaddafi Stadium",
+    city: "Lahore",
+    whatsapp_number: "+923331234567",
+    images: [mockImages.wallets[2]],
+    created_at: new Date(Date.now() - 86400000 * 2.8).toISOString(),
+    user_id: "user28",
+    user_name: "Haris Rauf",
+    user_profile_image: "https://i.pravatar.cc/150?img=65"
+  },
+  {
+    id: "29",
+    title: "Lost College Bag at IBA City Campus",
+    description: "Navy blue college bag with laptop and notes lost at IBA City Campus. Urgent need of study materials.",
+    status: "lost",
+    location: "IBA City Campus",
+    city: "Karachi",
+    whatsapp_number: "+923159876543",
+    reward_note: "Rs. 7,000 reward",
+    images: [mockImages.bags[0]],
+    created_at: new Date(Date.now() - 86400000 * 0.4).toISOString(),
+    user_id: "user29",
+    user_name: "Ayesha Tariq",
+    user_profile_image: "https://i.pravatar.cc/150?img=49"
+  },
+  {
+    id: "30",
+    title: "Found iPhone 13 at Johar Town",
+    description: "iPhone 13 mila hai Johar Town ke park mein. Red color ka case laga hua hai. Owner verification ke bad collect kar sakta hai.",
+    status: "found",
+    location: "Johar Town Park",
+    city: "Lahore",
+    whatsapp_number: "+923214567890",
+    images: [mockImages.phones[1]],
+    created_at: new Date(Date.now() - 86400000 * 1.6).toISOString(),
+    user_id: "user30",
+    user_name: "Shahid Khan",
+    user_profile_image: "https://i.pravatar.cc/150?img=66"
   }
 ];

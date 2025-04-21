@@ -6,15 +6,18 @@ import { Card, CardContent } from "@/components/ui/card";
 import { MOCK_ITEMS_PAKISTAN } from "@/data/mockItems";
 import ItemCard from "@/components/items/ItemCard";
 import SuccessStories from "@/components/sections/SuccessStories";
+
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [featuredItems, setFeaturedItems] = useState(MOCK_ITEMS_PAKISTAN.slice(0, 4));
+  const [featuredItems, setFeaturedItems] = useState(MOCK_ITEMS_PAKISTAN.slice(0, 16));
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       window.location.href = `/search?q=${encodeURIComponent(searchQuery)}`;
     }
   };
+
   return <div className="flex flex-col">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-foundit-primary/5 via-foundit-secondary/5 to-white pt-12 pb-20 sm:pt-20 sm:pb-24">
@@ -395,4 +398,5 @@ const Index = () => {
       </section>
     </div>;
 };
+
 export default Index;
