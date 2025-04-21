@@ -101,7 +101,7 @@ export function MobileNav() {
               className="flex items-center gap-2 py-3 px-4 rounded-md hover:bg-foundit-purple hover:text-white transition"
             >
               <User className="h-4 w-4" />
-              <span>Sign In</span>
+              <span>Get Started</span>
             </Link>
           ) : (
             <>

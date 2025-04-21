@@ -17,7 +17,7 @@ import {
   updateProfile
 } from "firebase/auth";
 import { auth, googleProvider } from "@/lib/firebase";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
 import { toast } from "sonner";
 
@@ -40,6 +40,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+  const location = useLocation();
   const { toast: uiToast } = useToast();
 
   // Monitor auth state changes
@@ -53,6 +54,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return unsubscribe;
   }, []);
 
+  // Get the redirect path from location state or default to home
+  const getRedirectPath = () => {
+    const state = location.state as { from?: { pathname: string } };
+    const from = state?.from?.pathname || "/";
+    return from;
+  };
+
   // Sign up with email/password
   const signUp = async (email: string, password: string, displayName?: string) => {
     try {
@@ -64,7 +72,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
       
       toast.success("Account created successfully!");
-      navigate("/");
+      const redirectPath = getRedirectPath();
+      navigate(redirectPath);
     } catch (error: any) {
       console.error("Sign up error:", error);
       toast.error(`Failed to create account: ${error.message}`);
@@ -77,7 +86,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       toast.success("Signed in successfully!");
-      navigate("/");
+      const redirectPath = getRedirectPath();
+      navigate(redirectPath);
     } catch (error: any) {
       console.error("Sign in error:", error);
       toast.error(`Failed to sign in: ${error.message}`);
@@ -90,7 +100,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       await signInWithPopup(auth, googleProvider);
       toast.success("Signed in successfully!");
-      navigate("/");
+      const redirectPath = getRedirectPath();
+      navigate(redirectPath);
     } catch (error: any) {
       console.error("Google sign in error:", error);
       toast.error(`Failed to sign in with Google: ${error.message}`);

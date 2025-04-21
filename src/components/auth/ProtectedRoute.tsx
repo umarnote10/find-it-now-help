@@ -14,8 +14,9 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
 
   useEffect(() => {
     if (!isLoading && !currentUser) {
-      toast.error("Please sign in to access this page", {
-        description: "You need to be signed in to access this feature."
+      toast.error("Authentication Required", {
+        description: "Please sign in or create an account to access this feature.",
+        duration: 5000
       });
     }
   }, [currentUser, isLoading]);
@@ -29,6 +30,7 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   }
 
   if (!currentUser) {
+    // Redirect to auth page with the current location saved so we can redirect back after login
     return <Navigate to="/auth" state={{ from: location }} replace />;
   }
 
