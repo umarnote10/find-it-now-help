@@ -1,5 +1,6 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { 
   Card, 
   CardContent, 
@@ -12,31 +13,117 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { MapPin, Mail, Phone, Lock, Eye, EyeOff } from "lucide-react";
+import { MapPin, Mail, Phone, Lock, Eye, EyeOff, Loader2, AlertCircle } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "sonner";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 const AuthPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [activeTab, setActiveTab] = useState("login");
   const [loginMethod, setLoginMethod] = useState<"email" | "phone">("email");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  
+  const { signIn, signUp, signInWithGoogle, currentUser } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = (location.state as { from?: { pathname: string } })?.from?.pathname || "/";
   
   const [credentials, setCredentials] = useState({
     email: "",
     phone: "",
     password: "",
     confirmPassword: "",
+    displayName: ""
   });
+  
+  useEffect(() => {
+    // If user is already logged in, redirect them
+    if (currentUser) {
+      navigate(from, { replace: true });
+    }
+  }, [currentUser, navigate, from]);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCredentials({
       ...credentials,
       [e.target.name]: e.target.value
     });
+    
+    // Clear error when user types
+    if (error) setError("");
   };
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted with:", credentials);
-    // TODO: Implement Supabase authentication
+    setIsSubmitting(true);
+    setError("");
+    
+    try {
+      if (loginMethod === "email") {
+        if (!credentials.email.trim() || !credentials.password.trim()) {
+          throw new Error("Please enter both email and password");
+        }
+        await signIn(credentials.email, credentials.password);
+      } else {
+        toast.error("Phone authentication not yet implemented");
+      }
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message || "Failed to sign in");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+  
+  const handleRegisterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError("");
+    
+    try {
+      if (loginMethod === "email") {
+        if (!credentials.email.trim() || !credentials.password.trim()) {
+          throw new Error("Please fill in all required fields");
+        }
+        
+        if (credentials.password !== credentials.confirmPassword) {
+          throw new Error("Passwords do not match");
+        }
+        
+        if (credentials.password.length < 6) {
+          throw new Error("Password must be at least 6 characters");
+        }
+        
+        await signUp(
+          credentials.email, 
+          credentials.password,
+          credentials.displayName || undefined
+        );
+      } else {
+        toast.error("Phone authentication not yet implemented");
+      }
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message || "Failed to create account");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+  
+  const handleGoogleSignIn = async () => {
+    setIsSubmitting(true);
+    setError("");
+    
+    try {
+      await signInWithGoogle();
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message || "Failed to sign in with Google");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   
   const togglePasswordVisibility = () => {
@@ -60,6 +147,13 @@ const AuthPage = () => {
             <TabsTrigger value="register">Register</TabsTrigger>
           </TabsList>
           
+          {error && (
+            <Alert variant="destructive" className="mb-6">
+              <AlertCircle className="h-4 w-4" />
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
+          
           <TabsContent value="login">
             <Card>
               <CardHeader>
@@ -70,7 +164,7 @@ const AuthPage = () => {
               </CardHeader>
               
               <CardContent>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleLoginSubmit}>
                   <div className="mb-6">
                     <Tabs defaultValue="email" value={loginMethod} onValueChange={(v) => setLoginMethod(v as "email" | "phone")}>
                       <TabsList className="grid grid-cols-2 w-full mb-4">
@@ -92,6 +186,7 @@ const AuthPage = () => {
                               onChange={handleChange}
                               className="pl-10"
                               required
+                              disabled={isSubmitting}
                             />
                           </div>
                         </div>
@@ -111,6 +206,7 @@ const AuthPage = () => {
                               onChange={handleChange}
                               className="pl-10"
                               required
+                              disabled={isSubmitting}
                             />
                           </div>
                         </div>
@@ -118,7 +214,7 @@ const AuthPage = () => {
                     </Tabs>
                   </div>
                   
-                  <div className="space-y-2">
+                  <div className="space-y-2 mb-6">
                     <div className="flex items-center justify-between">
                       <Label htmlFor="password">Password</Label>
                       <Button variant="link" type="button" className="p-0 h-auto text-xs font-normal">
@@ -136,6 +232,7 @@ const AuthPage = () => {
                         onChange={handleChange}
                         className="pl-10"
                         required
+                        disabled={isSubmitting}
                       />
                       <Button
                         type="button"
@@ -143,6 +240,7 @@ const AuthPage = () => {
                         size="icon"
                         className="absolute right-1 top-1 h-8 w-8"
                         onClick={togglePasswordVisibility}
+                        disabled={isSubmitting}
                       >
                         {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                         <span className="sr-only">
@@ -152,8 +250,40 @@ const AuthPage = () => {
                     </div>
                   </div>
                   
-                  <Button type="submit" className="w-full mt-6 bg-foundit-purple hover:bg-foundit-purpleDark">
-                    Sign In
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-foundit-purple hover:bg-foundit-purpleDark"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Signing In...
+                      </>
+                    ) : "Sign In"}
+                  </Button>
+                  
+                  <div className="relative my-6">
+                    <div className="absolute inset-0 flex items-center">
+                      <span className="w-full border-t border-gray-300"></span>
+                    </div>
+                    <div className="relative flex justify-center text-xs uppercase">
+                      <span className="bg-white px-2 text-gray-500">Or continue with</span>
+                    </div>
+                  </div>
+                  
+                  <Button 
+                    type="button"
+                    variant="outline"
+                    className="w-full"
+                    onClick={handleGoogleSignIn}
+                    disabled={isSubmitting}
+                  >
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" 
+                      alt="Google" 
+                      className="mr-2 h-4 w-4" 
+                    />
+                    Google
                   </Button>
                 </form>
               </CardContent>
@@ -165,6 +295,7 @@ const AuthPage = () => {
                     variant="link" 
                     onClick={() => setActiveTab("register")} 
                     className="p-0 h-auto text-foundit-purple"
+                    disabled={isSubmitting}
                   >
                     Create one
                   </Button>
@@ -183,8 +314,21 @@ const AuthPage = () => {
               </CardHeader>
               
               <CardContent>
-                <form onSubmit={handleSubmit}>
-                  <div className="mb-6">
+                <form onSubmit={handleRegisterSubmit}>
+                  <div className="space-y-4 mb-6">
+                    <div className="space-y-2">
+                      <Label htmlFor="displayName">Full Name</Label>
+                      <Input
+                        id="displayName"
+                        name="displayName"
+                        type="text"
+                        placeholder="John Doe"
+                        value={credentials.displayName}
+                        onChange={handleChange}
+                        disabled={isSubmitting}
+                      />
+                    </div>
+                    
                     <Tabs defaultValue="email" value={loginMethod} onValueChange={(v) => setLoginMethod(v as "email" | "phone")}>
                       <TabsList className="grid grid-cols-2 w-full mb-4">
                         <TabsTrigger value="email">Email</TabsTrigger>
@@ -205,6 +349,7 @@ const AuthPage = () => {
                               onChange={handleChange}
                               className="pl-10"
                               required
+                              disabled={isSubmitting}
                             />
                           </div>
                         </div>
@@ -224,6 +369,7 @@ const AuthPage = () => {
                               onChange={handleChange}
                               className="pl-10"
                               required
+                              disabled={isSubmitting}
                             />
                           </div>
                         </div>
@@ -245,6 +391,7 @@ const AuthPage = () => {
                           onChange={handleChange}
                           className="pl-10"
                           required
+                          disabled={isSubmitting}
                         />
                         <Button
                           type="button"
@@ -252,6 +399,7 @@ const AuthPage = () => {
                           size="icon"
                           className="absolute right-1 top-1 h-8 w-8"
                           onClick={togglePasswordVisibility}
+                          disabled={isSubmitting}
                         >
                           {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                           <span className="sr-only">
@@ -274,16 +422,49 @@ const AuthPage = () => {
                           onChange={handleChange}
                           className="pl-10"
                           required
+                          disabled={isSubmitting}
                         />
                       </div>
                     </div>
                   </div>
                   
                   <div className="mt-6">
-                    <Button type="submit" className="w-full bg-foundit-purple hover:bg-foundit-purpleDark">
-                      Create Account
+                    <Button 
+                      type="submit" 
+                      className="w-full bg-foundit-purple hover:bg-foundit-purpleDark"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Creating Account...
+                        </>
+                      ) : "Create Account"}
                     </Button>
                   </div>
+                  
+                  <div className="relative my-6">
+                    <div className="absolute inset-0 flex items-center">
+                      <span className="w-full border-t border-gray-300"></span>
+                    </div>
+                    <div className="relative flex justify-center text-xs uppercase">
+                      <span className="bg-white px-2 text-gray-500">Or continue with</span>
+                    </div>
+                  </div>
+                  
+                  <Button 
+                    type="button"
+                    variant="outline"
+                    className="w-full"
+                    onClick={handleGoogleSignIn}
+                    disabled={isSubmitting}
+                  >
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" 
+                      alt="Google" 
+                      className="mr-2 h-4 w-4" 
+                    />
+                    Google
+                  </Button>
                 </form>
               </CardContent>
               
@@ -294,6 +475,7 @@ const AuthPage = () => {
                     variant="link" 
                     onClick={() => setActiveTab("login")} 
                     className="p-0 h-auto text-foundit-purple"
+                    disabled={isSubmitting}
                   >
                     Sign in
                   </Button>

@@ -3,14 +3,18 @@ import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Search, MapPin, Hand, Menu, X, User } from "lucide-react";
+import { Search, MapPin, Hand, Menu, X, User, LogOut } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Separator } from "@/components/ui/separator";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
+  const { currentUser, logOut } = useAuth();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,6 +22,26 @@ export function MobileNav() {
       navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
       setOpen(false);
     }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logOut();
+      setOpen(false);
+    } catch (error) {
+      console.error("Failed to log out", error);
+    }
+  };
+
+  // Get user initials for the avatar
+  const getUserInitials = () => {
+    if (!currentUser?.displayName) return "U";
+    return currentUser.displayName
+      .split(" ")
+      .map((n) => n[0])
+      .join("")
+      .toUpperCase()
+      .slice(0, 2);
   };
 
   return (
@@ -39,6 +63,23 @@ export function MobileNav() {
           </Button>
         </div>
         
+        {currentUser && (
+          <div className="mb-4 flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
+            <Avatar>
+              <AvatarImage src={currentUser.photoURL || undefined} />
+              <AvatarFallback className="bg-foundit-purple text-white">
+                {getUserInitials()}
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <div className="font-medium">{currentUser.displayName || "User"}</div>
+              <div className="text-sm text-gray-500 truncate max-w-[180px]">
+                {currentUser.email}
+              </div>
+            </div>
+          </div>
+        )}
+        
         <form onSubmit={handleSearch} className="mb-4">
           <div className="relative">
             <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -53,14 +94,44 @@ export function MobileNav() {
         </form>
         
         <div className="space-y-1">
-          <Link
-            to="/auth"
-            onClick={() => setOpen(false)}
-            className="flex items-center gap-2 py-3 px-4 rounded-md hover:bg-foundit-purple hover:text-white transition"
-          >
-            <User className="h-4 w-4" />
-            <span>Sign In</span>
-          </Link>
+          {!currentUser ? (
+            <Link
+              to="/auth"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-2 py-3 px-4 rounded-md hover:bg-foundit-purple hover:text-white transition"
+            >
+              <User className="h-4 w-4" />
+              <span>Sign In</span>
+            </Link>
+          ) : (
+            <>
+              <Link
+                to="/profile"
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-2 py-3 px-4 rounded-md hover:bg-gray-100 transition"
+              >
+                <User className="h-4 w-4" />
+                <span>My Profile</span>
+              </Link>
+              <Link
+                to="/my-items"
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-2 py-3 px-4 rounded-md hover:bg-gray-100 transition"
+              >
+                <MapPin className="h-4 w-4" />
+                <span>My Items</span>
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="flex w-full items-center gap-2 py-3 px-4 rounded-md hover:bg-red-50 text-red-500 transition text-left"
+              >
+                <LogOut className="h-4 w-4" />
+                <span>Sign Out</span>
+              </button>
+              <Separator className="my-2" />
+            </>
+          )}
+          
           <Link
             to="/lost-items"
             onClick={() => setOpen(false)}

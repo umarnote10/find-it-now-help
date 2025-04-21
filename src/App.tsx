@@ -21,8 +21,41 @@ import CreateLostItemPage from "./pages/CreateLostItemPage";
 import CreateFoundItemPage from "./pages/CreateFoundItemPage";
 import AuthPage from "./pages/AuthPage";
 import SearchPage from "./pages/SearchPage";
+import { AuthProvider } from "./contexts/AuthContext";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 const queryClient = new QueryClient();
+
+const AppContent = () => (
+  <Routes>
+    <Route element={<Layout />}>
+      <Route path="/" element={<Index />} />
+      <Route path="/about" element={<AboutPage />} />
+      <Route path="/contact" element={<ContactPage />} />
+      <Route path="/privacy" element={<PrivacyPolicyPage />} />
+      <Route path="/disclaimer" element={<DisclaimerPage />} />
+      <Route path="/terms" element={<TermsPage />} />
+      <Route path="/dmca" element={<DmcaPolicyPage />} />
+      <Route path="/cookies" element={<CookiePolicyPage />} />
+      <Route path="/lost-items" element={<LostItemsPage />} />
+      <Route path="/found-items" element={<FoundItemsPage />} />
+      <Route path="/item/:id" element={<ItemDetailPage />} />
+      <Route path="/post/lost" element={
+        <ProtectedRoute>
+          <CreateLostItemPage />
+        </ProtectedRoute>
+      } />
+      <Route path="/post/found" element={
+        <ProtectedRoute>
+          <CreateFoundItemPage />
+        </ProtectedRoute>
+      } />
+      <Route path="/auth" element={<AuthPage />} />
+      <Route path="/search" element={<SearchPage />} />
+      <Route path="*" element={<NotFound />} />
+    </Route>
+  </Routes>
+);
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -30,26 +63,9 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<Index />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/privacy" element={<PrivacyPolicyPage />} />
-            <Route path="/disclaimer" element={<DisclaimerPage />} />
-            <Route path="/terms" element={<TermsPage />} />
-            <Route path="/dmca" element={<DmcaPolicyPage />} />
-            <Route path="/cookies" element={<CookiePolicyPage />} />
-            <Route path="/lost-items" element={<LostItemsPage />} />
-            <Route path="/found-items" element={<FoundItemsPage />} />
-            <Route path="/item/:id" element={<ItemDetailPage />} />
-            <Route path="/post/lost" element={<CreateLostItemPage />} />
-            <Route path="/post/found" element={<CreateFoundItemPage />} />
-            <Route path="/auth" element={<AuthPage />} />
-            <Route path="/search" element={<SearchPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
+        <AuthProvider>
+          <AppContent />
+        </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

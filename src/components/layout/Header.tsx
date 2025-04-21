@@ -2,19 +2,48 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { MobileNav } from "./MobileNav";
-import { Search, MapPin, Hand, Menu } from "lucide-react";
+import { Search, MapPin, Hand, Menu, User, LogOut } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
+  const { currentUser, logOut } = useAuth();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
     }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logOut();
+    } catch (error) {
+      console.error("Failed to log out", error);
+    }
+  };
+
+  // Get user initials for the avatar
+  const getUserInitials = () => {
+    if (!currentUser?.displayName) return "U";
+    return currentUser.displayName
+      .split(" ")
+      .map(n => n[0])
+      .join("")
+      .toUpperCase()
+      .slice(0, 2);
   };
 
   return (
@@ -62,11 +91,44 @@ const Header = () => {
                 <span>Report Found</span>
               </Button>
             </Link>
-            <Link to="/auth">
-              <Button size="sm" className="bg-foundit-purple hover:bg-foundit-purpleDark">
-                Sign In
-              </Button>
-            </Link>
+            
+            {currentUser ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="flex items-center gap-2">
+                    <Avatar className="h-8 w-8">
+                      <AvatarImage src={currentUser.photoURL || undefined} />
+                      <AvatarFallback className="bg-foundit-purple text-white">
+                        {getUserInitials()}
+                      </AvatarFallback>
+                    </Avatar>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <div className="px-2 py-1.5 text-sm font-medium">
+                    {currentUser.displayName || currentUser.email}
+                  </div>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link to="/profile" className="w-full cursor-pointer">My Profile</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/my-items" className="w-full cursor-pointer">My Items</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleLogout} className="text-red-500 focus:text-red-500">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Sign Out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link to="/auth">
+                <Button size="sm" className="bg-foundit-purple hover:bg-foundit-purpleDark">
+                  Sign In
+                </Button>
+              </Link>
+            )}
           </nav>
         </div>
 
