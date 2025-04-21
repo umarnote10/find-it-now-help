@@ -78,7 +78,7 @@ const AuthPage = () => {
           <p className="text-muted-foreground mt-2">Sign in to access your account</p>
         </div>
 
-        <Button variant="outline" className="w-full h-11" onClick={signInWithGoogle} disabled={isSubmitting}>
+        <Button variant="outline" onClick={signInWithGoogle} disabled={isSubmitting} className="w-full h-11 bg-gray-950 hover:bg-gray-800 text-slate-50">
           <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" className="w-5 h-5 mr-2" />
           Continue with Google
         </Button>
