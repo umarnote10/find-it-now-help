@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { MobileNav } from "./MobileNav";
@@ -7,26 +6,20 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
-  const { currentUser, logOut } = useAuth();
-
+  const {
+    currentUser,
+    logOut
+  } = useAuth();
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
     }
   };
-
   const handleLogout = async () => {
     try {
       await logOut();
@@ -38,16 +31,9 @@ const Header = () => {
   // Get user initials for the avatar
   const getUserInitials = () => {
     if (!currentUser?.displayName) return "U";
-    return currentUser.displayName
-      .split(" ")
-      .map(n => n[0])
-      .join("")
-      .toUpperCase()
-      .slice(0, 2);
+    return currentUser.displayName.split(" ").map(n => n[0]).join("").toUpperCase().slice(0, 2);
   };
-
-  return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+  return <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="foundit-container flex h-16 items-center justify-between">
         <div className="flex items-center">
           <Link to="/" className="flex items-center gap-2">
@@ -59,13 +45,7 @@ const Header = () => {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center space-x-1">
           <form onSubmit={handleSearch} className="relative mr-2">
-            <input 
-              type="text" 
-              placeholder="Search items..." 
-              className="w-40 lg:w-64 pl-8 pr-2 py-1.5 rounded-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-foundit-purple focus:border-transparent text-sm"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
+            <input type="text" placeholder="Search items..." className="w-40 lg:w-64 pl-8 pr-2 py-1.5 rounded-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-foundit-purple focus:border-transparent text-sm" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} />
             <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
           </form>
           <nav className="flex items-center space-x-1">
@@ -92,8 +72,7 @@ const Header = () => {
               </Button>
             </Link>
             
-            {currentUser ? (
-              <DropdownMenu>
+            {currentUser ? <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="sm" className="flex items-center gap-2">
                     <Avatar className="h-8 w-8">
@@ -121,14 +100,11 @@ const Header = () => {
                     <span>Sign Out</span>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
-              </DropdownMenu>
-            ) : (
-              <Link to="/auth">
-                <Button size="sm" className="bg-foundit-purple hover:bg-foundit-purpleDark">
+              </DropdownMenu> : <Link to="/auth">
+                <Button size="sm" className="bg-foundit-purple hover:bg-foundit-purpleDark text-slate-50 bg-zinc-950 hover:bg-zinc-800">
                   Get Started
                 </Button>
-              </Link>
-            )}
+              </Link>}
           </nav>
         </div>
 
@@ -137,8 +113,6 @@ const Header = () => {
           <MobileNav />
         </div>
       </div>
-    </header>
-  );
+    </header>;
 };
-
 export default Header;
