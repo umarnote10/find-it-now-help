@@ -13,7 +13,7 @@ const Footer = () => {
               <span className="font-bold text-lg text-foundit-purpleDark">Found It</span>
             </Link>
             <p className="mt-2 text-sm text-gray-600">
-              Helping people reunite with their lost items.
+              Found It is Pakistan's trusted platform to report, search, and recover lost items quickly through direct WhatsApp contact.
             </p>
           </div>
           
